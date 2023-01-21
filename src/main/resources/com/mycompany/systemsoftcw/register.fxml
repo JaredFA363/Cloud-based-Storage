@@ -10,7 +10,7 @@
    <children>
       <Pane prefHeight="407.0" prefWidth="600.0">
          <children>
-            <Button layoutX="269.0" layoutY="304.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="116.0" text="Confirm" />
+            <Button fx:id="confirmReg" layoutX="269.0" layoutY="304.0" mnemonicParsing="false" onAction="#confirmRegister" prefHeight="42.0" prefWidth="116.0" text="Confirm" />
             <TextField layoutX="179.0" layoutY="61.0" prefHeight="42.0" prefWidth="301.0" />
             <Label layoutX="80.0" layoutY="74.0" text="Email" />
             <Label layoutX="80.0" layoutY="146.0" text="Password" />
