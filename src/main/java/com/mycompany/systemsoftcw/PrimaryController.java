@@ -13,15 +13,15 @@ public class PrimaryController {
     
     @FXML 
     private void switchToRegister(ActionEvent event) throws IOException{
-        App.setRoot("register");
+        App.setRoot("Regist");
     }
             
     @FXML
-    private Button signInButton;
+    private Button loginButton;
     
     @FXML 
-    private void switchToSignIn(ActionEvent event) throws IOException{
-        App.setRoot("signin");
+    private void switchToLogin(ActionEvent event) throws IOException{
+        App.setRoot("Login");
     }    
 
     @FXML
