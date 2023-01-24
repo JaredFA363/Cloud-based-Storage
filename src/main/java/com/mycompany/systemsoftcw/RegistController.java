@@ -13,6 +13,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  * FXML Controller class
  *
@@ -26,6 +32,18 @@ public class RegistController implements Initializable {
     
     @FXML
     private void confirmRegist(ActionEvent event) throws IOException {
+        Connection connection = null;
+        try{
+            connection = DriverManager.getConnection("jdbc:sqlite:AccountDB.db");
+            System.out.println("connection successful");
+            //Statement statement = connection.createStatement();
+            //statement.setQueryTimeout(30);
+            //statement.executeUpdate("drop table if exists AccountDB");
+        }
+        catch(SQLException e){
+            //System.err.println(e.getMessage());
+            System.out.println("failed");
+        }
         App.setRoot("maininterface");
     }
     
