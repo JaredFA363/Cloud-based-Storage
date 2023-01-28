@@ -32,13 +32,15 @@ public class RegistController implements Initializable {
     
     @FXML
     private void confirmRegist(ActionEvent event) throws IOException {
+        
         Connection connection = null;
+            
         try{
             connection = DriverManager.getConnection("jdbc:sqlite:AccountDB.db");
             System.out.println("connection successful");
-            //Statement statement = connection.createStatement();
+            Statement statement = connection.createStatement();
             //statement.setQueryTimeout(30);
-            //statement.executeUpdate("drop table if exists AccountDB");
+            statement.executeUpdate("drop table if exists AccountDB");
         }
         catch(SQLException e){
             //System.err.println(e.getMessage());
