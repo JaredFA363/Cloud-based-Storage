@@ -12,6 +12,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
+import javafx.scene.control.TextField;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,13 +29,23 @@ public class RegistController implements Initializable {
     
     @FXML
     private Button confirmRegis;
-    Connection connection = null; 
+    @FXML
+    private TextField regEmail;
+    @FXML
+    private TextField regPassword;
+    
+    Connection connection = null;
+    String registeremail;
+    String registerpass;
     
     @FXML
     private void confirmRegist(ActionEvent event) throws IOException {
  
         RegistController obj = new RegistController();
+        registeremail = regEmail.getText();
+        registerpass = regPassword.getText();
         obj.createTable("Account");
+        obj.addUser(registeremail, registerpass);
         App.setRoot("maininterface");
     }
     
@@ -49,6 +60,29 @@ public class RegistController implements Initializable {
         }
         catch (SQLException ex){
             System.out.println("Unable to create table " + ex);            
+        }
+        finally{
+            try{
+                if (connection != null){
+                    connection.close();
+                }
+            }
+            catch (SQLException e){
+                System.err.println(e.getMessage());
+            }
+        }
+    }
+    
+    public void addUser(String email, String password){
+        try{
+            connection = Dbcon.conDb();
+            var statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            System.out.println("Attempting to add user");
+            statement.executeUpdate("insert into Account(email,password) values('"+email+"','"+password+"')");
+        }
+        catch (SQLException ex){
+            System.out.println("Failed to add user" + ex);
         }
         finally{
             try{
