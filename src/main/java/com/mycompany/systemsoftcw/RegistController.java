@@ -25,28 +25,41 @@ import java.sql.Statement;
  * @author ntu-user
  */
 public class RegistController implements Initializable {
-
     
     @FXML
     private Button confirmRegis;
+    Connection connection = null; 
     
     @FXML
     private void confirmRegist(ActionEvent event) throws IOException {
-        
-        Connection connection = null;
-            
-        try{
-            connection = DriverManager.getConnection("jdbc:sqlite:AccountDB.db");
-            System.out.println("connection successful");
-            Statement statement = connection.createStatement();
-            //statement.setQueryTimeout(30);
-            statement.executeUpdate("drop table if exists AccountDB");
-        }
-        catch(SQLException e){
-            //System.err.println(e.getMessage());
-            System.out.println("failed");
-        }
+ 
+        RegistController obj = new RegistController();
+        obj.createTable("Account");
         App.setRoot("maininterface");
+    }
+    
+    public void createTable(String tableName){
+        try{
+            connection = Dbcon.conDb();
+            var statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            System.out.println("Trying to create " + tableName + " table");
+            statement.executeUpdate("create table if not exists " + tableName + "( id integer primary key autoincrement, email string, password string)");
+            System.out.println("Success");
+        }
+        catch (SQLException ex){
+            System.out.println("Unable to create table " + ex);            
+        }
+        finally{
+            try{
+                if (connection != null){
+                    connection.close();
+                }
+            }
+            catch (SQLException e){
+                System.err.println(e.getMessage());
+            }
+        }
     }
     
     /**
