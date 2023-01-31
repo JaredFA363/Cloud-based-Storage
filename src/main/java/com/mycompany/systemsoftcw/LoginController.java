@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import java.lang.reflect.InvocationTargetException;
+import java.security.spec.InvalidKeySpecException;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
@@ -36,13 +37,17 @@ public class LoginController implements Initializable{
     String loginemail;
     String loginpass;
     Boolean validated;
+    String inPass;
     
     @FXML 
-    private void confirmLogins(ActionEvent event) throws IOException{
+    private void confirmLogins(ActionEvent event) throws IOException, InvalidKeySpecException{
         LoginController obj = new LoginController();
+        RegistController RegObj = new RegistController();
         loginemail = logEmail.getText();
         loginpass = logPassword.getText();
-        validated = obj.validateUser(loginemail, loginpass);
+        RegObj.generateOrLoadSalt();
+        inPass = RegObj.generateSecurePass(loginpass);
+        validated = obj.validateUser(loginemail, inPass);
         if (validated == true){
             App.setRoot("maininterface");
         }
@@ -59,6 +64,7 @@ public class LoginController implements Initializable{
             var statement = connection.createStatement();
             statement.setQueryTimeout(30);
             try{
+                //String inPass = RegistController.generateSecurePass(pass);
                 ResultSet rs = statement.executeQuery("select email,password from Account");
             
                 while (rs.next()){

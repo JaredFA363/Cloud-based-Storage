@@ -55,7 +55,7 @@ public class RegistController implements Initializable {
     private String characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     
     @FXML
-    private void confirmRegist(ActionEvent event) throws IOException {
+    private void confirmRegist(ActionEvent event) throws IOException, InvalidKeySpecException {
  
         RegistController obj = new RegistController();
         registeremail = regEmail.getText();
@@ -113,7 +113,7 @@ public class RegistController implements Initializable {
         }
     }
     
-    private String getSaltvalue(int length){
+    private String getSaltvalue(int length) throws InvalidKeySpecException{
         StringBuilder finalval = new StringBuilder(length);
         for (int i =0; i<length; i++){
             finalval.append(characters.charAt(random.nextInt(characters.length())));
@@ -136,14 +136,14 @@ public class RegistController implements Initializable {
         }
     }
     
-    public String generateSecurePass(String password) throws InvalidKeySpecException{
+    public String generateSecurePass(String password) throws InvalidKeySpecException {
         String finalval = null;
         byte[] securePassword = hash(password.toCharArray(), saltValue.getBytes());
         finalval = Base64.getEncoder().encodeToString(securePassword);
         return finalval;
     }
     
-    public void generateOrLoadSalt() throws IOException{
+    public void generateOrLoadSalt() throws IOException, InvalidKeySpecException{
         try{
             File fp = new File(".salt");
             if (!fp.exists()){
