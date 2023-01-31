@@ -48,7 +48,7 @@ public class LoginController implements Initializable{
         }
         else{
             System.out.println("Incorrect Email pr Passwprd");
-            App.setRoot("login");
+            App.setRoot("primary");
         }
     }
     

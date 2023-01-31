@@ -14,12 +14,25 @@ import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import java.util.Base64;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 /**
  * FXML Controller class
  *
@@ -37,6 +50,9 @@ public class RegistController implements Initializable {
     Connection connection = null;
     String registeremail;
     String registerpass;
+    private Random random = new SecureRandom();
+    private String saltValue;
+    private String characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     
     @FXML
     private void confirmRegist(ActionEvent event) throws IOException {
@@ -44,6 +60,7 @@ public class RegistController implements Initializable {
         RegistController obj = new RegistController();
         registeremail = regEmail.getText();
         registerpass = regPassword.getText();
+        obj.generateOrLoadSalt();
         obj.createTable("Account");
         obj.addUser(registeremail, registerpass);
         App.setRoot("maininterface");
@@ -79,9 +96,9 @@ public class RegistController implements Initializable {
             var statement = connection.createStatement();
             statement.setQueryTimeout(30);
             System.out.println("Attempting to add user");
-            statement.executeUpdate("insert into Account(email,password) values('"+email+"','"+password+"')");
+            statement.executeUpdate("insert into Account(email,password) values('"+email+"','"+generateSecurePass(password)+"')");
         }
-        catch (SQLException ex){
+        catch (SQLException | InvalidKeySpecException ex){
             System.out.println("Failed to add user" + ex);
         }
         finally{
@@ -93,6 +110,57 @@ public class RegistController implements Initializable {
             catch (SQLException e){
                 System.err.println(e.getMessage());
             }
+        }
+    }
+    
+    private String getSaltvalue(int length){
+        StringBuilder finalval = new StringBuilder(length);
+        for (int i =0; i<length; i++){
+            finalval.append(characters.charAt(random.nextInt(characters.length())));
+        }
+        return new String(finalval);
+    }
+    
+    private byte[] hash(char[] password, byte[] salt) throws InvalidKeySpecException{
+        PBEKeySpec spec = new PBEKeySpec(password, salt, 10000, 256);
+        Arrays.fill(password, Character.MIN_VALUE);
+        try{
+            SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+            return skf.generateSecret(spec).getEncoded();
+        }
+        catch(NoSuchAlgorithmException | InvalidKeySpecException e){
+            throw new AssertionError("Error while hashing a password" + e.getMessage(), e);
+        }
+        finally{
+            spec.clearPassword();
+        }
+    }
+    
+    public String generateSecurePass(String password) throws InvalidKeySpecException{
+        String finalval = null;
+        byte[] securePassword = hash(password.toCharArray(), saltValue.getBytes());
+        finalval = Base64.getEncoder().encodeToString(securePassword);
+        return finalval;
+    }
+    
+    public void generateOrLoadSalt() throws IOException{
+        try{
+            File fp = new File(".salt");
+            if (!fp.exists()){
+                saltValue = this.getSaltvalue(30);
+                FileWriter myWriter = new FileWriter(fp);
+                myWriter.write(saltValue);
+                myWriter.close();
+            }
+            else{
+                Scanner myReader = new Scanner(fp);
+                while (myReader.hasNextLine()) {
+                    saltValue = myReader.nextLine();
+                }
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
         }
     }
     
