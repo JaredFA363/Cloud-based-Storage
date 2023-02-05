@@ -8,7 +8,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.systemsoftcw.MaininterfaceController">
    <children>
-      <Label layoutX="200.0" layoutY="200.0" text="Main" />
-      <Button fx:id="logoutButton" layoutX="469.0" layoutY="45.0" mnemonicParsing="false" onAction="#logOut" text="LogOut" />
+      <Label layoutX="284.0" layoutY="193.0" text="Main" />
+      <Button fx:id="logoutButton" layoutX="484.0" layoutY="39.0" mnemonicParsing="false" onAction="#logOut" text="LogOut" />
+      <Button fx:id="profileButton" layoutX="63.0" layoutY="39.0" mnemonicParsing="false" onAction="#GoToProfile" text="Profile" />
    </children>
 </AnchorPane>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.mycompany.systemsoftcw.ProfileController">
+   <children>
+      <Button layoutX="144.0" layoutY="276.0" mnemonicParsing="false" text="Update" />
+      <Button layoutX="382.0" layoutY="276.0" mnemonicParsing="false" text="Delete" />
+      <TextField layoutX="144.0" layoutY="128.0" prefHeight="39.0" prefWidth="320.0" promptText="Enter Email" />
+      <TextField layoutX="144.0" layoutY="200.0" prefHeight="39.0" prefWidth="320.0" promptText="Enter Password" />
+      <Label layoutX="120.0" layoutY="17.0" prefHeight="84.0" prefWidth="348.0" text="Enter changed details or delete whole profile" />
+   </children>
+</AnchorPane>
