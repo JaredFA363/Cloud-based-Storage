@@ -6,13 +6,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.mycompany.systemsoftcw.ProfileController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.systemsoftcw.ProfileController">
    <children>
-      <Button layoutX="144.0" layoutY="276.0" mnemonicParsing="false" text="Update" />
-      <Button layoutX="382.0" layoutY="276.0" mnemonicParsing="false" text="Delete" />
-      <TextField layoutX="144.0" layoutY="128.0" prefHeight="39.0" prefWidth="320.0" promptText="Enter Email" />
-      <TextField layoutX="144.0" layoutY="200.0" prefHeight="39.0" prefWidth="320.0" promptText="Enter Password" />
+      <Button fx:id="updateButton" layoutX="144.0" layoutY="301.0" mnemonicParsing="false" onAction="#updateDetails" text="Update" />
+      <Button fx:id="deleteButton" layoutX="381.0" layoutY="307.0" mnemonicParsing="false" onAction="#deleteDetails" text="Delete" />
+      <TextField fx:id="det_Email" layoutX="140.0" layoutY="161.0" prefHeight="39.0" prefWidth="320.0" promptText="Enter new Email Combo" />
+      <TextField fx:id="det_Password" layoutX="140.0" layoutY="227.0" prefHeight="39.0" prefWidth="320.0" promptText="Enter new Password Combo" />
       <Label layoutX="120.0" layoutY="17.0" prefHeight="84.0" prefWidth="348.0" text="Enter changed details or delete whole profile" />
+      <TextField fx:id="original_Email" layoutX="144.0" layoutY="89.0" prefHeight="39.0" prefWidth="314.0" promptText="Enter Original Email" />
    </children>
 </AnchorPane>

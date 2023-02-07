@@ -7,6 +7,17 @@ package com.mycompany.systemsoftcw;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * FXML Controller class
@@ -14,7 +25,79 @@ import javafx.fxml.Initializable;
  * @author ntu-user
  */
 public class ProfileController implements Initializable {
-
+    
+    @FXML
+    private Button updateButton;
+    
+    @FXML
+    private Button deleteButton;
+    
+    @FXML
+    private TextField det_Email;
+    
+    @FXML
+    private TextField det_Password;
+    
+    @FXML
+    private TextField original_Email;
+    
+    Connection connection = null;
+    String entered_Email;
+    String entered_Password;
+    String entered_Original_Email;
+    
+    @FXML
+    private void updateDetails(ActionEvent event) throws IOException{
+        entered_Email = det_Email.getText();
+        entered_Password = det_Password.getText();
+        entered_Original_Email = original_Email.getText();
+        
+        try{
+            connection = Dbcon.conDb();
+            var statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            statement.executeUpdate("UPDATE Account SET email = '" +entered_Email+"', password = '" +entered_Password+"' WHERE email = '" +entered_Original_Email+"'");
+            App.setRoot("maininterface");
+        }
+        catch(SQLException e){
+            System.out.println("Failed to update" + e);
+        }
+        finally{
+            try{
+                if (connection != null){
+                    connection.close();
+                }
+            }
+            catch (SQLException e){
+                System.err.println(e.getMessage());
+            }
+        }
+    }
+    
+    @FXML
+    private void deleteDetails(ActionEvent event) throws IOException{
+        entered_Original_Email = original_Email.getText();
+        try{
+            connection = Dbcon.conDb();
+            var statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            statement.executeUpdate("DELETE FROM Account WHERE email = '"+entered_Original_Email+"'");
+            App.setRoot("primary");
+        }
+        catch (SQLException e){
+            System.out.println("Failed to delete" + e);
+        }
+        finally{
+            try{
+                if (connection != null){
+                    connection.close();
+                }
+            }
+            catch (SQLException e){
+                System.err.println(e.getMessage());
+            }
+        }
+    }
     /**
      * Initializes the controller class.
      */
