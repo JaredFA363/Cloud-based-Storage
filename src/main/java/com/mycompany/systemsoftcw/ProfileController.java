@@ -23,6 +23,10 @@ import java.sql.SQLException;
  * FXML Controller class
  *
  * @author ntu-user
+ * 
+ * @brief Profile Controller class
+ * 
+ * @details Allows a user to either delete or modify their account.
  */
 public class ProfileController implements Initializable {
     
@@ -45,6 +49,13 @@ public class ProfileController implements Initializable {
     String entered_Email;
     String entered_Password;
     String entered_Original_Email;
+    
+    /**
+    * @brief update Details procedure
+    * 
+    * @details Allows a user to update their accounts in the database. Takes the original email and updated details.
+    * Compares the email to the one in the database. If correct, stores the username and password combo. 
+    */
     
     @FXML
     private void updateDetails(ActionEvent event) throws IOException{
@@ -73,6 +84,13 @@ public class ProfileController implements Initializable {
             }
         }
     }
+    
+    /**
+    * @brief delete Details procedure
+    * 
+    * @details Allows a user to delete their accounts in the database. Takes the original email to see who's account to delete.
+    * Then removes the row of accounts.
+    */
     
     @FXML
     private void deleteDetails(ActionEvent event) throws IOException{

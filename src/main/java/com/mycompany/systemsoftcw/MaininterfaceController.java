@@ -16,6 +16,11 @@ import javafx.scene.control.Button;
  * FXML Controller class
  *
  * @author ntu-user
+ * 
+ * @brief Main Interface Controller Class
+ * 
+ * @details The main interface is where the user would be able to see there files and interact with them.
+ * Furthermore it has the profile button so the user can either change their details or delete there entire account.
  */
 public class MaininterfaceController implements Initializable {
     

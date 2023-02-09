@@ -17,10 +17,10 @@ import javafx.scene.control.TextField;
 import java.io.File;
 import java.io.FileWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
+//import java.sql.DriverManager;
+//import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+//import java.sql.Statement;
 
 import java.util.Base64;
 import java.security.NoSuchAlgorithmException;
@@ -37,6 +37,11 @@ import javax.crypto.spec.PBEKeySpec;
  * FXML Controller class
  *
  * @author ntu-user
+ * 
+ * @brief Register Controller Class
+ * 
+ * @details The register controller takes in the user input from the controller view. Creates the table if it doesn't exist hashes the password.
+ * Then adds both the email and password to the database.
  */
 public class RegistController implements Initializable {
     
@@ -53,6 +58,10 @@ public class RegistController implements Initializable {
     private Random random = new SecureRandom();
     private String saltValue;
     private String characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    private int timeout = 30;
+    private int iterations = 10000;
+    private int keylength = 256;
+    private String passHashKey = "PBKDF2WithHmacSHA1";
     
     @FXML
     private void confirmRegist(ActionEvent event) throws IOException, InvalidKeySpecException {
@@ -66,11 +75,19 @@ public class RegistController implements Initializable {
         App.setRoot("maininterface");
     }
     
+    /**
+    *
+    * @brief Create Table Procedure
+    * 
+    * @details Takes the table name. If the table doesn't exist. Then creates it.
+    * @param[in] The table name
+    */
+    
     public void createTable(String tableName){
         try{
             connection = Dbcon.conDb();
             var statement = connection.createStatement();
-            statement.setQueryTimeout(30);
+            statement.setQueryTimeout(timeout);
             System.out.println("Trying to create " + tableName + " table");
             statement.executeUpdate("create table if not exists " + tableName + "( id integer primary key autoincrement, email string, password string)");
             System.out.println("Success");
@@ -90,11 +107,23 @@ public class RegistController implements Initializable {
         }
     }
     
+    /**
+    *
+    * @brief Add User Function
+    * 
+    * @details Takes in the username and password combination. Hashes the password.
+    * Then stores the email and hashed password into the database.
+    * 
+    * @param[in] The email inputted by the user
+    * @param[in] password input 
+    * 
+    */
+    
     public void addUser(String email, String password){
         try{
             connection = Dbcon.conDb();
             var statement = connection.createStatement();
-            statement.setQueryTimeout(30);
+            statement.setQueryTimeout(timeout);
             System.out.println("Attempting to add user");
             statement.executeUpdate("insert into Account(email,password) values('"+email+"','"+generateSecurePass(password)+"')");
         }
@@ -122,10 +151,10 @@ public class RegistController implements Initializable {
     }
     
     private byte[] hash(char[] password, byte[] salt) throws InvalidKeySpecException{
-        PBEKeySpec spec = new PBEKeySpec(password, salt, 10000, 256);
+        PBEKeySpec spec = new PBEKeySpec(password, salt, iterations, keylength);
         Arrays.fill(password, Character.MIN_VALUE);
         try{
-            SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+            SecretKeyFactory skf = SecretKeyFactory.getInstance(passHashKey);
             return skf.generateSecret(spec).getEncoded();
         }
         catch(NoSuchAlgorithmException | InvalidKeySpecException e){
@@ -136,12 +165,30 @@ public class RegistController implements Initializable {
         }
     }
     
+    /**
+    *
+    * @brief Generate Secure Passwword Function
+    * 
+    * @details Takes in the password. Uses the hash function to hash the password and create the secure password
+    * 
+    * @param[in] password input by the user
+    * 
+    * @returns The hashed password
+    */
+    
     public String generateSecurePass(String password) throws InvalidKeySpecException {
         String finalval = null;
         byte[] securePassword = hash(password.toCharArray(), saltValue.getBytes());
         finalval = Base64.getEncoder().encodeToString(securePassword);
         return finalval;
     }
+    
+    /**
+    *
+    * @brief Generate or Load Salt 
+    * 
+    * @details Generates salt file if it doesn't exist or loads it form the .salt file
+    */
     
     public void generateOrLoadSalt() throws IOException, InvalidKeySpecException{
         try{

@@ -7,8 +7,15 @@ package com.mycompany.systemsoftcw;
 import java.sql.*;
 
 /**
- *
+ * @brief Database Connection Class
+ * 
  * @author ntu-user
+ * 
+ * @details This function creates the connection between the program and the AccountDB database
+ * return connection to be used with the other controllers. E.g. Login & Register Controllers
+ *
+ * @returns the connection if correct
+ * 
  */
 public class Dbcon {
     

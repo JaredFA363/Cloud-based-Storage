@@ -7,7 +7,7 @@ package com.mycompany.systemsoftcw;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
-import java.lang.reflect.InvocationTargetException;
+//import java.lang.reflect.InvocationTargetException;
 import java.security.spec.InvalidKeySpecException;
 
 import java.io.IOException;
@@ -22,7 +22,12 @@ import java.sql.ResultSet;
 /**
  * FXML Controller class
  *
+ * @brief Login Controller Class 
+ * 
  * @author ntu-user
+ * 
+ * @details Login Controller connects to Login view. Takes in the email and password of the user.
+ * Allows Users to go into the main program if details are correct.
  */
 public class LoginController implements Initializable{
 
@@ -56,6 +61,19 @@ public class LoginController implements Initializable{
             App.setRoot("primary");
         }
     }
+    
+    /**
+    *
+    * @brief Validate User Function
+    * 
+    * @details Takes in the username and password combination. Compares it to the database.
+    * If matches returns true to the confirmLogins procedure.
+    * 
+    * @param[in] The email inputted by the user
+    * @param[in] password input by the user after it has been hashed
+    * 
+    * @returns The Boolean variable flag which shows if the verification is successful or not 
+    */
     
     public boolean validateUser(String email, String pass){
         Boolean flag = false;
