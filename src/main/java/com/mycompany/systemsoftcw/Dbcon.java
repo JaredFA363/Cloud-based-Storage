@@ -14,7 +14,7 @@ import java.sql.*;
  * @details This function creates the connection between the program and the AccountDB database
  * return connection to be used with the other controllers. E.g. Login & Register Controllers
  *
- * @returns the connection if correct
+ * @returns the connection if correct if not returns error.
  * 
  */
 public class Dbcon {
