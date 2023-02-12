@@ -20,6 +20,7 @@ import java.sql.Connection;
 //import java.sql.DriverManager;
 //import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 //import java.sql.Statement;
 
 import java.util.Base64;
@@ -69,10 +70,16 @@ public class RegistController implements Initializable {
         RegistController obj = new RegistController();
         registeremail = regEmail.getText();
         registerpass = regPassword.getText();
-        obj.generateOrLoadSalt();
-        obj.createTable("Account");
-        obj.addUser(registeremail, registerpass);
-        App.setRoot("maininterface");
+        if (validateEmail(registeremail)==false) {
+            System.out.println("Incorrect email");
+            App.setRoot("primary");
+        }
+        else{
+            obj.generateOrLoadSalt();
+            obj.createTable("Account");
+            obj.addUser(registeremail, registerpass);
+            App.setRoot("maininterface");
+        }
     }
     
     /**
@@ -209,6 +216,15 @@ public class RegistController implements Initializable {
         catch (IOException e){
             e.printStackTrace();
         }
+    }
+    
+    public boolean validateEmail(String email){
+        boolean confirm_email= true;
+        if (!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", email))) {
+            System.out.println("Not in email format");
+            confirm_email= false;
+        }
+        return confirm_email;
     }
     
     /**

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -12,6 +13,11 @@
       <Label layoutX="82.0" layoutY="113.0" text="Email" />
       <Label layoutX="82.0" layoutY="200.0" text="Password" />
       <PasswordField fx:id="logPassword" layoutX="215.0" layoutY="187.0" prefHeight="40.0" prefWidth="309.0" promptText="Enter Password" />
-      <TextField fx:id="logEmail" layoutX="215.0" layoutY="100.0" prefHeight="40.0" prefWidth="309.0" promptText="Enter Email" />
+      <TextField fx:id="logEmail" layoutX="215.0" layoutY="100.0" prefHeight="40.0" prefWidth="309.0" promptText="xyz@email.com" />
+      <Label layoutX="262.0" layoutY="33.0" prefHeight="27.0" prefWidth="123.0" text="Login">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
