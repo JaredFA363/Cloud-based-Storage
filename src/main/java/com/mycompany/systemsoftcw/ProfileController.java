@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import java.io.IOException;
 import java.net.URL;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,6 +50,7 @@ public class ProfileController implements Initializable {
     String entered_Email;
     String entered_Password;
     String entered_Original_Email;
+    String new_pass;
     
     /**
     * @brief update Details procedure
@@ -58,16 +60,21 @@ public class ProfileController implements Initializable {
     */
     
     @FXML
-    private void updateDetails(ActionEvent event) throws IOException{
+    private void updateDetails(ActionEvent event) throws IOException, InvalidKeySpecException{
         entered_Email = det_Email.getText();
         entered_Password = det_Password.getText();
         entered_Original_Email = original_Email.getText();
+        
+        RegistController RegObj = new RegistController();
+        RegObj.generateOrLoadSalt();
+        new_pass = RegObj.generateSecurePass(entered_Password);
+        
         
         try{
             connection = Dbcon.conDb();
             var statement = connection.createStatement();
             statement.setQueryTimeout(30);
-            statement.executeUpdate("UPDATE Account SET email = '" +entered_Email+"', password = '" +entered_Password+"' WHERE email = '" +entered_Original_Email+"'");
+            statement.executeUpdate("UPDATE Account SET email = '" +entered_Email+"', password = '" +new_pass+"' WHERE email = '" +entered_Original_Email+"'");
             App.setRoot("maininterface");
         }
         catch(SQLException e){
