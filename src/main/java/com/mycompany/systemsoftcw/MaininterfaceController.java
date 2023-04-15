@@ -7,6 +7,9 @@ package com.mycompany.systemsoftcw;
 import java.io.IOException;
 import java.io.File;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 
 /**
  * FXML Controller class
@@ -111,8 +115,23 @@ public class MaininterfaceController implements Initializable {
         File newfileObj = new File(filename);
     }
     
-    private void UploadFile(){
-        
+    private void UploadFile(String destination){
+        FileChooser fileChooser = new FileChooser();
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if(selectedFile != null){
+            try{
+                Files.copy(selectedFile.toPath(),Paths.get(destination, selectedFile.getName()), StandardCopyOption.REPLACE_EXISTING);
+                System.out.println("File has been uploaded!");
+            }
+            catch(IOException e) {
+                System.out.println("Cannot upload File");
+                e.printStackTrace();
+            }
+        } else{
+            System.out.println("You have not selected a file");
+        }
+      
+            
     }
 
     private void renameFile(String currentfilename, String newfilename){
