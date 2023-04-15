@@ -37,6 +37,8 @@ public class MaininterfaceController implements Initializable {
     private Button file_submit;
     @FXML
     private TextField fileOrFolderName;
+    @FXML
+    private TextField newFilenameOrPath;
     
     @FXML 
     private void logOut(ActionEvent event) throws IOException{
@@ -51,6 +53,7 @@ public class MaininterfaceController implements Initializable {
     @FXML
     private void Submit_File_Order(ActionEvent event){
         String fileOrFolder = fileOrFolderName.getText();
+        String newFileOrPath;
         String inputted_Order = File_combobox.getValue().toString();
         
         if (inputted_Order.equals("Create File")){
@@ -64,9 +67,11 @@ public class MaininterfaceController implements Initializable {
         }else if (inputted_Order.equals("Upload File")){
             UploadFile();
         }else if (inputted_Order.equals("Rename File")){
-            renameFile();
+            newFileOrPath = newFilenameOrPath.getText();
+            renameFile(fileOrFolder,newFileOrPath);
         }else if (inputted_Order.equals("Move File")){
-            moveFile();
+            newFileOrPath = newFilenameOrPath.getText();
+            moveFile(fileOrFolder,newFileOrPath);
         }
     }
     
@@ -110,12 +115,24 @@ public class MaininterfaceController implements Initializable {
         
     }
 
-    private void renameFile(){
-        
+    private void renameFile(String currentfilename, String newfilename){
+        File currentfileObj = new File(currentfilename);
+        File newfileObj = new File(newfilename);
+        if (currentfileObj.renameTo(newfileObj)){
+            System.out.println("File Renamed");
+        }else{
+            System.out.println("Failed to Rename");
+        }
     }
     
-    private void moveFile(){
-        
+    private void moveFile(String currentfilename, String newfilename){
+        File currentfileObj = new File(currentfilename);
+        File newfileObj = new File(newfilename);
+        if (currentfileObj.renameTo(newfileObj)){
+            System.out.println("File moved");
+        }else{
+            System.out.println("Failed to Move");
+        }
     }
 
     /**

@@ -10,18 +10,19 @@
    <children>
       <Button fx:id="logoutButton" layoutX="519.0" layoutY="14.0" mnemonicParsing="false" onAction="#logOut" text="LogOut" />
       <Button fx:id="profileButton" layoutX="42.0" layoutY="14.0" mnemonicParsing="false" onAction="#GoToProfile" text="Profile" />
-      <TableView fx:id="FoldersView" layoutX="251.0" layoutY="113.0" prefHeight="169.0" prefWidth="329.0">
+      <TableView fx:id="FoldersView" layoutX="318.0" layoutY="54.0" prefHeight="202.0" prefWidth="262.0">
         <columns>
           <TableColumn fx:id="FolderColumn" prefWidth="300.0" text="Folders" />
         </columns>
       </TableView>
-      <TableView fx:id="FilesView" layoutX="251.0" layoutY="282.0" prefHeight="169.0" prefWidth="329.0">
+      <TableView fx:id="FilesView" layoutX="318.0" layoutY="251.0" prefHeight="192.0" prefWidth="262.0">
         <columns>
           <TableColumn fx:id="FilesColumn" prefWidth="297.0" text="Files" />
         </columns>
       </TableView>
-      <TextField fx:id="fileOrFolderName" layoutX="32.0" layoutY="113.0" />
-      <ComboBox fx:id="File_combobox" layoutX="43.0" layoutY="148.0" prefWidth="150.0" />
-      <Button fx:id="file_submit" layoutX="85.0" layoutY="185.0" mnemonicParsing="false" onAction="#Submit_File_Order" text="Submit" />
+      <TextField fx:id="fileOrFolderName" layoutX="35.0" layoutY="70.0" prefHeight="25.0" prefWidth="249.0" promptText="Enter File or Folder name" />
+      <ComboBox fx:id="File_combobox" layoutX="76.0" layoutY="155.0" prefWidth="150.0" />
+      <Button fx:id="file_submit" layoutX="119.0" layoutY="214.0" mnemonicParsing="false" onAction="#Submit_File_Order" text="Submit" />
+      <TextField fx:id="newFilenameOrPath" layoutX="35.0" layoutY="111.0" prefHeight="25.0" prefWidth="249.0" promptText="Enter new filename or Path" />
    </children>
 </AnchorPane>
