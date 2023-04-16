@@ -36,6 +36,8 @@ public class MaininterfaceController implements Initializable {
     @FXML
     private Button profileButton;
     @FXML
+    private Button btnTerminal;
+    @FXML
     private ComboBox File_combobox;
     @FXML
     private Button file_submit;
@@ -55,6 +57,11 @@ public class MaininterfaceController implements Initializable {
     }
     
     @FXML
+    private void GoToTerminal(ActionEvent event) throws IOException{
+        App.setRoot("terminal");
+    }
+    
+    @FXML
     private void Submit_File_Order(ActionEvent event){
         String fileOrFolder = fileOrFolderName.getText();
         String newFileOrPath;
@@ -69,7 +76,9 @@ public class MaininterfaceController implements Initializable {
         }else if (inputted_Order.equals("Create Folder")){
             CreateFolder(fileOrFolder);
         }else if (inputted_Order.equals("Upload File")){
-            UploadFile();
+            newFileOrPath = newFilenameOrPath.getText();
+            UploadFile(newFileOrPath);
+            //System.out.println("");
         }else if (inputted_Order.equals("Rename File")){
             newFileOrPath = newFilenameOrPath.getText();
             renameFile(fileOrFolder,newFileOrPath);
