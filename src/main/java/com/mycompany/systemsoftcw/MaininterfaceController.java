@@ -122,6 +122,11 @@ public class MaininterfaceController implements Initializable {
     
     private void CopyFile(String filename){
         File newfileObj = new File(filename);
+        if (!newfileObj.Files.copy()){
+            System.out.println("Failed to copy");
+        }else{
+            System.out.println("File Copied");
+        }
     }
     
     private void UploadFile(String destination){
