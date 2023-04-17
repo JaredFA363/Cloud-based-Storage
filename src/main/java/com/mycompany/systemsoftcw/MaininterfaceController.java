@@ -103,7 +103,7 @@ public class MaininterfaceController implements Initializable {
         }
     }
     
-    private void CreateFolder(String Foldername){
+    public void CreateFolder(String Foldername){
         File newfileObj = new File(Foldername);
         if (newfileObj.mkdir()){
             System.out.println("Folder Created");
