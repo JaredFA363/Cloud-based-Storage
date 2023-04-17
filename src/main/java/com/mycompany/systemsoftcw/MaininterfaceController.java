@@ -72,7 +72,8 @@ public class MaininterfaceController implements Initializable {
         }else if (inputted_Order.equals("Delete File/Folder")){
             deleteFile(fileOrFolder);
         }else if (inputted_Order.equals("Copy File")){
-            CopyFile(fileOrFolder);
+            newFileOrPath = newFilenameOrPath.getText();
+            CopyFile(fileOrFolder,newFileOrPath);
         }else if (inputted_Order.equals("Create Folder")){
             CreateFolder(fileOrFolder);
         }else if (inputted_Order.equals("Upload File")){
@@ -120,12 +121,14 @@ public class MaininterfaceController implements Initializable {
         }
     }
     
-    private void CopyFile(String filename){
+    private void CopyFile(String filename, String newfilename){
         File newfileObj = new File(filename);
-        if (!newfileObj.Files.copy()){
-            System.out.println("Failed to copy");
-        }else{
+        File copiedfile = new File(newfilename);
+        try{
+            Files.copy(newfileObj.toPath(), copiedfile.toPath());
             System.out.println("File Copied");
+        }catch(Exception e){
+            System.out.println("Failed to copy file");
         }
     }
     
