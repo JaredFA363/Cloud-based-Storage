@@ -121,7 +121,7 @@ public class MaininterfaceController implements Initializable {
         }
     }
     
-    private void CopyFile(String filename, String newfilename){
+    public void CopyFile(String filename, String newfilename){
         File newfileObj = new File(filename);
         File copiedfile = new File(newfilename);
         try{
@@ -161,7 +161,7 @@ public class MaininterfaceController implements Initializable {
         }
     }
     
-    private void moveFile(String currentfilename, String newfilename){
+    public void moveFile(String currentfilename, String newfilename){
         File currentfileObj = new File(currentfilename);
         File newfileObj = new File(newfilename);
         if (currentfileObj.renameTo(newfileObj)){

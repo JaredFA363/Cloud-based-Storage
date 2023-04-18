@@ -5,6 +5,7 @@
 package com.mycompany.systemsoftcw;
 
 import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -36,17 +37,62 @@ public class TerminalController implements Initializable {
         String CommandArea = CommandLine.getText();
         String[] Commands = CommandArea.split("\n");
         String lastLine = Commands[Commands.length - 1];
-        //System.out.println("Last line: " + lastLine);
         
         String[] WordsinCommand = lastLine.trim().split("\\s+");
-        //for (String word : WordsinCommand) {
-        //    System.out.println(word);
-        //}
-        System.out.println(WordsinCommand[1]);
+        
         if (WordsinCommand[0].equals("mkdir") && WordsinCommand.length == 2){
             String foldername = WordsinCommand[1];
             MaininterfaceController obj = new MaininterfaceController();
             obj.CreateFolder(foldername);
+            CommandLine.appendText("\nDirectory made");
+            
+        }else if(WordsinCommand[0].equals("ls")){
+            System.out.println("ls");
+            
+        }else if(WordsinCommand[0].equals("mv") && WordsinCommand.length == 3){
+            String source = WordsinCommand[1];
+            String destination = WordsinCommand[2];
+            MaininterfaceController obj = new MaininterfaceController();
+            obj.moveFile(source,destination);
+            CommandLine.appendText("\nFile moved");
+            
+        }else if(WordsinCommand[0].equals("cp") && WordsinCommand.length == 3){
+            String currentfile = WordsinCommand[1];
+            String copiedfile = WordsinCommand[2];
+            MaininterfaceController obj = new MaininterfaceController();
+            obj.CopyFile(currentfile,copiedfile);
+            CommandLine.appendText("\nFile copied");
+            
+        }else if(WordsinCommand[0].equals("ps")){
+            runPsCommand();
+            
+        }else if(WordsinCommand[0].equals("whoami")){
+            System.out.println("whoami");
+            
+        }else if(WordsinCommand[0].equals("tree")){
+            System.out.println("tree");
+            
+        }else if(WordsinCommand[0].equals("nano")){
+            System.out.println("nano");
+            
+        }else{
+            CommandLine.appendText("\nIncorrect Command Error");
+        }
+    }
+    
+    private void runPsCommand(){
+        try{
+            ProcessBuilder processBuilder = new ProcessBuilder("ps");
+            Process process = processBuilder.start();
+            
+            InputStream inputStream = process.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                CommandLine.appendText(line + "\n");
+            }
+        }catch (IOException e){
+            System.out.println("\nFailed to show processes");
         }
     }
     
