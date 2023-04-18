@@ -26,6 +26,7 @@ public class TerminalController implements Initializable {
     private Button btnCommand;
     @FXML
     private TextArea CommandLine;
+   
     
     @FXML
     private void BackToFiles() throws IOException{
@@ -47,7 +48,7 @@ public class TerminalController implements Initializable {
             CommandLine.appendText("\nDirectory made");
             
         }else if(WordsinCommand[0].equals("ls")){
-            System.out.println("ls");
+            runLsCommand();
             
         }else if(WordsinCommand[0].equals("mv") && WordsinCommand.length == 3){
             String source = WordsinCommand[1];
@@ -68,12 +69,16 @@ public class TerminalController implements Initializable {
             
         }else if(WordsinCommand[0].equals("whoami")){
             System.out.println("whoami");
+            LoginController obj = new LoginController();
+            String user = obj.getEmail();
+            System.out.println(user);
             
         }else if(WordsinCommand[0].equals("tree")){
-            System.out.println("tree");
+            runTreeCommand();
             
-        }else if(WordsinCommand[0].equals("nano")){
-            System.out.println("nano");
+        }else if(WordsinCommand[0].equals("nano") && WordsinCommand.length == 2){
+            String filename = WordsinCommand[1];
+            runNanoCommand(filename);
             
         }else{
             CommandLine.appendText("\nIncorrect Command Error");
@@ -93,6 +98,55 @@ public class TerminalController implements Initializable {
             }
         }catch (IOException e){
             System.out.println("\nFailed to show processes");
+        }
+    }
+    
+    private void runTreeCommand(){
+        try{
+            ProcessBuilder processBuilder = new ProcessBuilder("tree");
+            Process process = processBuilder.start();
+            
+            InputStream inputStream = process.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                CommandLine.appendText(line + "\n");
+            }
+        }catch (IOException e){
+            System.out.println("\nFailed to show tree");
+        }
+    }
+    
+    private void runLsCommand(){
+        try{
+            ProcessBuilder processBuilder = new ProcessBuilder("ls");
+            Process process = processBuilder.start();
+            
+            InputStream inputStream = process.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                CommandLine.appendText(line + "\n");
+            }
+        }catch (IOException e){
+            System.out.println("\nFailed to list files");
+        }
+    }
+    
+    private void runNanoCommand(String filename){
+        try{
+            ProcessBuilder processBuilder = new ProcessBuilder("nano "+ filename);
+            processBuilder.redirectInput(ProcessBuilder.Redirect.INHERIT);
+            Process process = processBuilder.start();
+            
+            InputStream inputStream = process.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                CommandLine.appendText(line + "\n");
+            }
+        }catch (IOException e){
+            System.out.println("\nFailed to run nano");
         }
     }
     

@@ -54,6 +54,8 @@ public class LoginController implements Initializable{
         inPass = RegObj.generateSecurePass(loginpass);
         validated = obj.validateUser(loginemail, inPass);
         if (validated == true){
+            setEmail(loginemail);
+            System.out.println(getEmail());
             App.setRoot("maininterface");
         }
         else{
@@ -110,6 +112,14 @@ public class LoginController implements Initializable{
             }
         }
         return flag;
+    }
+    
+    private void setEmail(String email){
+        this.loginemail = email;
+    }
+    
+    public String getEmail(){
+        return loginemail;
     }
     
     /**
