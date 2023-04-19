@@ -32,6 +32,11 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 /**
@@ -72,13 +77,23 @@ public class RegistController implements Initializable {
         registerpass = regPassword.getText();
         if (validateEmail(registeremail)==false) {
             System.out.println("Incorrect email");
-            App.setRoot("primary");
+            //App.setRoot("primary");
+            Parent root = FXMLLoader.load(getClass().getResource("primary.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
         else{
             obj.generateOrLoadSalt();
             obj.createTable("Account");
             obj.addUser(registeremail, registerpass);
-            App.setRoot("maininterface");
+            //App.setRoot("Login");
+            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
     }
     

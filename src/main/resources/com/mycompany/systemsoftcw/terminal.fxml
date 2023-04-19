@@ -17,5 +17,6 @@
          </font>
       </Label>
       <Button fx:id="GoBack" layoutX="48.0" layoutY="14.0" mnemonicParsing="false" onAction="#BackToFiles" text="Back" />
+      <Label fx:id="label" layoutX="450.0" layoutY="19.0" />
    </children>
 </AnchorPane>

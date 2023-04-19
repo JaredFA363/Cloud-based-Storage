@@ -14,10 +14,16 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -45,20 +51,50 @@ public class MaininterfaceController implements Initializable {
     private TextField fileOrFolderName;
     @FXML
     private TextField newFilenameOrPath;
+    @FXML
+    private Label label;
     
     @FXML 
     private void logOut(ActionEvent event) throws IOException{
-        App.setRoot("primary");
+        //App.setRoot("primary");
+        Parent root = FXMLLoader.load(getClass().getResource("primary.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     
     @FXML
     private void GoToProfile(ActionEvent event) throws IOException{
-        App.setRoot("profile");
+        //App.setRoot("profile");
+        Parent root = FXMLLoader.load(getClass().getResource("profile.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     
     @FXML
     private void GoToTerminal(ActionEvent event) throws IOException{
-        App.setRoot("terminal");
+        //App.setRoot("terminal");
+        /*Parent root = FXMLLoader.load(getClass().getResource("terminal.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();*/
+        String email = label.getText();
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("terminal.fxml"));
+        Parent root = loader.load();
+            
+        TerminalController terminalcontroller = loader.getController();
+        terminalcontroller.setEmails(email);
+            
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        
     }
     
     @FXML
@@ -66,32 +102,33 @@ public class MaininterfaceController implements Initializable {
         String fileOrFolder = fileOrFolderName.getText();
         String newFileOrPath;
         String inputted_Order = File_combobox.getValue().toString();
+        String email = label.getText();
         
         if (inputted_Order.equals("Create File")){
-            CreateFile(fileOrFolder);
+            CreateFile(fileOrFolder,email);
         }else if (inputted_Order.equals("Delete File/Folder")){
-            deleteFile(fileOrFolder);
+            deleteFile(fileOrFolder,email);
         }else if (inputted_Order.equals("Copy File")){
             newFileOrPath = newFilenameOrPath.getText();
-            CopyFile(fileOrFolder,newFileOrPath);
+            CopyFile(fileOrFolder,newFileOrPath,email);
         }else if (inputted_Order.equals("Create Folder")){
-            CreateFolder(fileOrFolder);
+            CreateFolder(fileOrFolder,email);
         }else if (inputted_Order.equals("Upload File")){
             newFileOrPath = newFilenameOrPath.getText();
-            UploadFile(newFileOrPath);
-            //System.out.println("");
+            String Uplaod_desination = "/data/"+email+"/"+newFileOrPath;
+            UploadFile(Uplaod_desination);
         }else if (inputted_Order.equals("Rename File")){
             newFileOrPath = newFilenameOrPath.getText();
-            renameFile(fileOrFolder,newFileOrPath);
+            renameFile(fileOrFolder,newFileOrPath,email);
         }else if (inputted_Order.equals("Move File")){
             newFileOrPath = newFilenameOrPath.getText();
-            moveFile(fileOrFolder,newFileOrPath);
+            moveFile(fileOrFolder,newFileOrPath,email);
         }
     }
     
-    private void CreateFile(String filename){
+    private void CreateFile(String filename, String email){
         try{
-            File newfileObj = new File(filename);
+            File newfileObj = new File("/data/"+email+"/"+filename);
             if (newfileObj.createNewFile()){
                 System.out.println("File Created");
             }else{
@@ -103,8 +140,8 @@ public class MaininterfaceController implements Initializable {
         }
     }
     
-    public void CreateFolder(String Foldername){
-        File newfileObj = new File(Foldername);
+    public void CreateFolder(String Foldername, String email){
+        File newfileObj = new File("/data/"+email+"/"+Foldername);
         if (newfileObj.mkdir()){
             System.out.println("Folder Created");
         }else{
@@ -112,8 +149,8 @@ public class MaininterfaceController implements Initializable {
         }
     }
     
-    private void deleteFile(String filename){
-        File newfileObj = new File(filename);
+    private void deleteFile(String filename, String email){
+        File newfileObj = new File("/data/"+email+"/"+filename);
         if (newfileObj.delete()){
             System.out.println("File Deleted");
         }else{
@@ -121,9 +158,9 @@ public class MaininterfaceController implements Initializable {
         }
     }
     
-    public void CopyFile(String filename, String newfilename){
-        File newfileObj = new File(filename);
-        File copiedfile = new File(newfilename);
+    public void CopyFile(String filename, String newfilename, String email){
+        File newfileObj = new File("/data/"+email+"/"+filename);
+        File copiedfile = new File("/data/"+email+"/"+newfilename);
         try{
             Files.copy(newfileObj.toPath(), copiedfile.toPath());
             System.out.println("File Copied");
@@ -151,9 +188,9 @@ public class MaininterfaceController implements Initializable {
             
     }
 
-    private void renameFile(String currentfilename, String newfilename){
-        File currentfileObj = new File(currentfilename);
-        File newfileObj = new File(newfilename);
+    private void renameFile(String currentfilename, String newfilename, String email){
+        File currentfileObj = new File("/data/"+email+"/"+currentfilename);
+        File newfileObj = new File("/data/"+email+"/"+newfilename);
         if (currentfileObj.renameTo(newfileObj)){
             System.out.println("File Renamed");
         }else{
@@ -161,14 +198,18 @@ public class MaininterfaceController implements Initializable {
         }
     }
     
-    public void moveFile(String currentfilename, String newfilename){
-        File currentfileObj = new File(currentfilename);
-        File newfileObj = new File(newfilename);
+    public void moveFile(String currentfilename, String newfilename, String email){
+        File currentfileObj = new File("/data/"+email+"/"+currentfilename);
+        File newfileObj = new File("/data/"+email+"/"+newfilename);
         if (currentfileObj.renameTo(newfileObj)){
             System.out.println("File moved");
         }else{
             System.out.println("Failed to Move");
         }
+    }
+    
+    public void setEmail(String email){
+        label.setText(email);
     }
 
     /**
@@ -186,6 +227,7 @@ public class MaininterfaceController implements Initializable {
                 "Rename File",
                 "Move File"
         );
+        
     }    
     
 }

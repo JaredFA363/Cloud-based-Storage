@@ -4,6 +4,7 @@
  */
 package com.mycompany.systemsoftcw;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -19,6 +20,15 @@ import javafx.scene.control.TextField;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.nio.file.*;
+import java.nio.file.Paths;
+import java.util.Comparator;
 
 /**
  * FXML Controller class
@@ -75,7 +85,23 @@ public class ProfileController implements Initializable {
             var statement = connection.createStatement();
             statement.setQueryTimeout(30);
             statement.executeUpdate("UPDATE Account SET email = '" +entered_Email+"', password = '" +new_pass+"' WHERE email = '" +entered_Original_Email+"'");
-            App.setRoot("maininterface");
+            //App.setRoot("maininterface");
+            File currentfileObj = new File("/data/"+entered_Original_Email);
+            File newfileObj = new File("/data/"+entered_Email);
+            if (currentfileObj.renameTo(newfileObj)){
+                System.out.println("Folder Renamed");
+            }
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("maininterface.fxml"));
+            Parent root = loader.load();
+            
+            MaininterfaceController maininterfacecontroller = loader.getController();
+            maininterfacecontroller.setEmail(entered_Email);
+            
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
         catch(SQLException e){
             System.out.println("Failed to update" + e);
@@ -102,12 +128,21 @@ public class ProfileController implements Initializable {
     @FXML
     private void deleteDetails(ActionEvent event) throws IOException{
         entered_Original_Email = original_Email.getText();
+        Path directory = Paths.get("/data/"+entered_Original_Email);
         try{
             connection = Dbcon.conDb();
             var statement = connection.createStatement();
             statement.setQueryTimeout(30);
             statement.executeUpdate("DELETE FROM Account WHERE email = '"+entered_Original_Email+"'");
-            App.setRoot("primary");
+            //App.setRoot("primary");
+            
+            Files.walk(directory).sorted(Comparator.reverseOrder()).map(Path::toFile).forEach(File::delete);
+            
+            Parent root = FXMLLoader.load(getClass().getResource("primary.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
         catch (SQLException e){
             System.out.println("Failed to delete" + e);

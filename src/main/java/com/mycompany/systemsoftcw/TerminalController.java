@@ -11,7 +11,15 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.event.ActionEvent;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.Node;
 
 /**
  * FXML Controller class
@@ -26,15 +34,30 @@ public class TerminalController implements Initializable {
     private Button btnCommand;
     @FXML
     private TextArea CommandLine;
+    @FXML
+    private Label label;
    
     
     @FXML
-    private void BackToFiles() throws IOException{
-        App.setRoot("maininterface");
+    private void BackToFiles(ActionEvent event) throws IOException{
+        //App.setRoot("maininterface");
+        String email = label.getText();
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("maininterface.fxml"));
+        Parent root = loader.load();
+            
+        MaininterfaceController maininterfacecontroller = loader.getController();
+        maininterfacecontroller.setEmail(email);
+            
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     
     @FXML
     private void Send_Command(){
+        String email = label.getText();
         String CommandArea = CommandLine.getText();
         String[] Commands = CommandArea.split("\n");
         String lastLine = Commands[Commands.length - 1];
@@ -44,7 +67,7 @@ public class TerminalController implements Initializable {
         if (WordsinCommand[0].equals("mkdir") && WordsinCommand.length == 2){
             String foldername = WordsinCommand[1];
             MaininterfaceController obj = new MaininterfaceController();
-            obj.CreateFolder(foldername);
+            obj.CreateFolder(foldername,email);
             CommandLine.appendText("\nDirectory made");
             
         }else if(WordsinCommand[0].equals("ls")){
@@ -54,24 +77,21 @@ public class TerminalController implements Initializable {
             String source = WordsinCommand[1];
             String destination = WordsinCommand[2];
             MaininterfaceController obj = new MaininterfaceController();
-            obj.moveFile(source,destination);
+            obj.moveFile(source,destination,email);
             CommandLine.appendText("\nFile moved");
             
         }else if(WordsinCommand[0].equals("cp") && WordsinCommand.length == 3){
             String currentfile = WordsinCommand[1];
             String copiedfile = WordsinCommand[2];
             MaininterfaceController obj = new MaininterfaceController();
-            obj.CopyFile(currentfile,copiedfile);
+            obj.CopyFile(currentfile,copiedfile,email);
             CommandLine.appendText("\nFile copied");
             
         }else if(WordsinCommand[0].equals("ps")){
             runPsCommand();
             
         }else if(WordsinCommand[0].equals("whoami")){
-            System.out.println("whoami");
-            LoginController obj = new LoginController();
-            String user = obj.getEmail();
-            System.out.println(user);
+            CommandLine.appendText("\n"+email);
             
         }else if(WordsinCommand[0].equals("tree")){
             runTreeCommand();
@@ -148,6 +168,10 @@ public class TerminalController implements Initializable {
         }catch (IOException e){
             System.out.println("\nFailed to run nano");
         }
+    }
+    
+    public void setEmails(String email){
+        label.setText(email);
     }
     
     /**

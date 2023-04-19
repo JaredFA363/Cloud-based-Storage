@@ -24,6 +24,12 @@ import java.nio.file.Path;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.Node;
+
 /**
  * FXML Controller class
  *
@@ -59,14 +65,28 @@ public class LoginController implements Initializable{
         inPass = RegObj.generateSecurePass(loginpass);
         validated = obj.validateUser(loginemail, inPass);
         if (validated == true){
-            setEmail(loginemail);
             setFolder(loginemail);
-            System.out.println(getEmail());
-            App.setRoot("maininterface");
+            //App.setRoot("maininterface");
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("maininterface.fxml"));
+            Parent root = loader.load();
+            
+            MaininterfaceController maininterfacecontroller = loader.getController();
+            maininterfacecontroller.setEmail(loginemail);
+            
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
         else{
             System.out.println("Incorrect Email pr Passwprd");
-            App.setRoot("primary");
+            //App.setRoot("primary");
+            Parent root = FXMLLoader.load(getClass().getResource("primary.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
     }
     
@@ -120,21 +140,16 @@ public class LoginController implements Initializable{
         return flag;
     }
     
-    private void setEmail(String email){
-        this.loginemail = email;
-    }
-    
-    public String getEmail(){
-        return loginemail;
-    }
-    
     private void setFolder(String email){
         Path path = Paths.get("/data/"+email);
         
-        try{
-            Files.createDirectories(path);
-        }catch(Exception e){
-            System.out.println("Erro "+e);
+        if (!Files.exists(path))
+        {
+            try{
+                Files.createDirectories(path);
+            }catch(Exception e){
+                System.out.println("Erro "+e);
+            }
         }
     }
     
