@@ -19,6 +19,11 @@ import javafx.scene.control.TextField;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+
+import java.nio.file.Path;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 /**
  * FXML Controller class
  *
@@ -55,6 +60,7 @@ public class LoginController implements Initializable{
         validated = obj.validateUser(loginemail, inPass);
         if (validated == true){
             setEmail(loginemail);
+            setFolder(loginemail);
             System.out.println(getEmail());
             App.setRoot("maininterface");
         }
@@ -120,6 +126,16 @@ public class LoginController implements Initializable{
     
     public String getEmail(){
         return loginemail;
+    }
+    
+    private void setFolder(String email){
+        Path path = Paths.get("/data/"+email);
+        
+        try{
+            Files.createDirectories(path);
+        }catch(Exception e){
+            System.out.println("Erro "+e);
+        }
     }
     
     /**
