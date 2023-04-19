@@ -75,7 +75,7 @@ public class Encryption {
             if (rs.next()) {
                 return rs.getString("password");
             } else {
-                throw new IllegalArgumentException("Username not found: " + username);
+                throw new IllegalArgumentException("Username cannot found: " + username);
             } 
      }
     }
