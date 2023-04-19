@@ -16,8 +16,8 @@ import javax.crypto.spec.*;
 import java.sql.*;
 import java.util.Base64;
 /**
- *method for encryption and decription using AES ALGO
- * @author ntu-user
+ *method for encryption and decryption using AES ALGO
+ * @author n1004932
  */
 public class Encryption {
     private static final int KEY_SIZE = 256;
