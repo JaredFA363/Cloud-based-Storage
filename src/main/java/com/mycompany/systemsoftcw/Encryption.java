@@ -20,7 +20,7 @@ import java.util.Base64;
  * @author n1004932
  */
 public class Encryption {
-    private static final int KEY_SIZE = 256; //numbe rof bits
+    private static final int KEY_SIZE = 256; //number of bits
     private static final int SALT_SIZE = 10; // makes sure passwords of different users do not derive the same key. 
     private static final String ALGORITHM = "AES/CBC/PKCS5Padding";
     private static final String DB_URL = "jdbc:sqlite:AccountDB.db";
@@ -46,18 +46,19 @@ public class Encryption {
     
     public static void decript(Path inputFilePath, Path outputFilePath, String username) throws Exception{
         String password = getEncryptedPasswordFromDatabase(username);
-        byte[] saltAndEncryptedBytes = Files.readAllBytes(inputFilePath);
+        byte[] saltAndEncryptedBytes = Files.readAllBytes(inputFilePath);//takes as input the path of the encrypted file
         byte[] salt = Arrays.copyOfRange(saltAndEncryptedBytes, 0, SALT_SIZE);
         byte[] iv = Arrays.copyOfRange(saltAndEncryptedBytes, SALT_SIZE, SALT_SIZE + 16);
         byte[] encryptedBytes = Arrays.copyOfRange(saltAndEncryptedBytes, SALT_SIZE + iv.length, saltAndEncryptedBytes.length);
         //derive get secret ket from pasword
         SecretKey key = deriveKey(decryptPassword(password), salt);
         Cipher cipher = Cipher.getInstance(ALGORITHM);
+        // decrypt the input file using the initialized cipher 
         cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(iv));
         
         byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
         
-        Files.write(outputFilePath, decryptedBytes);
+        Files.write(outputFilePath, decryptedBytes); //and writes the decrypted bytes to the output file.
     }
 
     private static byte[] generateSalt() {
@@ -80,8 +81,8 @@ public class Encryption {
      }
     }
      
-    private static SecretKey deriveKey(String password, byte[] salt) throws Exception {
-        KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, KEY_SIZE);
+    private static SecretKey deriveKey(String password, byte[] salt) throws Exception { //exception if error
+        KeySpec spec = new PBEKeySpec(password.toCharArray(), salt,65536, KEY_SIZE);// derives the secret key using PBKDF2WithHmacSHA256 algorithm 
         SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
         return new SecretKeySpec(factory.generateSecret(spec).getEncoded(), "AES");
     }
@@ -90,7 +91,7 @@ public class Encryption {
     Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
     cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(Arrays.copyOf(encryptedPassword.getBytes("UTF-8"), 16), "AES"));
     byte[] decryptedPassword = cipher.doFinal(Base64.getDecoder().decode(encryptedPassword.substring(16)));
-    return new String(decryptedPassword);
+    return new String(decryptedPassword);//returns the decrypted password as a String.
 }
 
     }
