@@ -20,8 +20,8 @@ import java.util.Base64;
  * @author n1004932
  */
 public class Encryption {
-    private static final int KEY_SIZE = 256;
-    private static final int SALT_SIZE = 10;
+    private static final int KEY_SIZE = 256; //numbe rof bits
+    private static final int SALT_SIZE = 10; // makes sure passwords of different users do not derive the same key. 
     private static final String ALGORITHM = "AES/CBC/PKCS5Padding";
     private static final String DB_URL = "jdbc:sqlite:AccountDB.db";
   
@@ -62,7 +62,7 @@ public class Encryption {
 
     private static byte[] generateSalt() {
          byte[] salt = new byte[SALT_SIZE];
-         SecureRandom random = new SecureRandom();
+         SecureRandom random = new SecureRandom(); //SecureRandom object to generate a random salt of the specified length.
          random.nextBytes(salt);
          return salt;
     }
