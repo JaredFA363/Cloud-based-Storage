@@ -23,6 +23,9 @@ import java.sql.ResultSet;
 import java.nio.file.Path;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -65,23 +68,32 @@ public class LoginController implements Initializable{
         inPass = RegObj.generateSecurePass(loginpass);
         validated = obj.validateUser(loginemail, inPass);
         if (validated == true){
-            setFolder(loginemail);
-            //App.setRoot("maininterface");
+            if (checkUserInstance(loginemail) == true){
+                System.out.println("Already Logged In");
+                Parent root = FXMLLoader.load(getClass().getResource("primary.fxml"));
+                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+            else{
+                setFolder(loginemail);
+                appendUser(loginemail);
             
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("maininterface.fxml"));
-            Parent root = loader.load();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("maininterface.fxml"));
+                Parent root = loader.load();
             
-            MaininterfaceController maininterfacecontroller = loader.getController();
-            maininterfacecontroller.setEmail(loginemail);
+                MaininterfaceController maininterfacecontroller = loader.getController();
+                maininterfacecontroller.setEmail(loginemail);
             
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
         }
         else{
             System.out.println("Incorrect Email pr Passwprd");
-            //App.setRoot("primary");
             Parent root = FXMLLoader.load(getClass().getResource("primary.fxml"));
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -151,6 +163,36 @@ public class LoginController implements Initializable{
                 System.out.println("Erro "+e);
             }
         }
+    }
+    
+    private void appendUser(String email){
+        String data = email;
+        String filename = "currentusers.txt";
+        
+        try {
+            FileWriter writer = new FileWriter(filename, true); // open the file in append mode
+            writer.write(data + "\n"); // write the data to the end of the file
+            writer.close(); // close the file
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private boolean checkUserInstance(String email) throws IOException{
+        String filePath = "currentusers.txt";
+        String user = email;
+
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            if (line.contains(user)) {
+                return true;
+            }
+        }
+
+        reader.close();
+        return false;
     }
     
     /**

@@ -24,6 +24,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.BufferedWriter;
 
 /**
  * FXML Controller class
@@ -57,6 +61,9 @@ public class MaininterfaceController implements Initializable {
     @FXML 
     private void logOut(ActionEvent event) throws IOException{
         //App.setRoot("primary");
+        String email = label.getText();
+        removeUserInstance(email);
+        
         Parent root = FXMLLoader.load(getClass().getResource("primary.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -210,6 +217,29 @@ public class MaininterfaceController implements Initializable {
     
     public void setEmail(String email){
         label.setText(email);
+    }
+    
+    private void removeUserInstance(String email) throws IOException {
+        File file = new File("currentusers.txt");
+        String target = email;
+        
+        // Read the contents of the file
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        StringBuilder stringBuilder = new StringBuilder();
+        String line = reader.readLine();
+        while (line != null) {
+            stringBuilder.append(line);
+            stringBuilder.append(System.lineSeparator());
+            line = reader.readLine();
+        }
+        reader.close();
+        String content = stringBuilder.toString();
+
+        String updatedContent = content.replaceAll(target, "");
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+        writer.write(updatedContent);
+        writer.close();
     }
 
     /**
