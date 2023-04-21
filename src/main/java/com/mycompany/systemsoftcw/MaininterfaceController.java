@@ -105,7 +105,7 @@ public class MaininterfaceController implements Initializable {
     }
     
     @FXML
-    private void Submit_File_Order(ActionEvent event){
+    private void Submit_File_Order(ActionEvent event) throws IOException{
         String fileOrFolder = fileOrFolderName.getText();
         String newFileOrPath;
         String inputted_Order = File_combobox.getValue().toString();
@@ -130,6 +130,17 @@ public class MaininterfaceController implements Initializable {
         }else if (inputted_Order.equals("Move File")){
             newFileOrPath = newFilenameOrPath.getText();
             moveFile(fileOrFolder,newFileOrPath,email);
+        }else if (inputted_Order.equals("Share File")){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("sharefiles.fxml"));
+            Parent root = loader.load();
+            
+            SharefilesController Sharefilescontroller = loader.getController();
+            Sharefilescontroller.setEmails(email);
+            
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
     }
     
@@ -219,6 +230,7 @@ public class MaininterfaceController implements Initializable {
         label.setText(email);
     }
     
+    
     private void removeUserInstance(String email) throws IOException {
         File file = new File("currentusers.txt");
         String target = email;
@@ -255,7 +267,8 @@ public class MaininterfaceController implements Initializable {
                 "Copy File",
                 "Upload File",
                 "Rename File",
-                "Move File"
+                "Move File",
+                "Share File"
         );
         
     }    

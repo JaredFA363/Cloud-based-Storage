@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.mycompany.systemsoftcw.SharefilesController">
+   <children>
+      <Label fx:id="label" layoutX="288.0" layoutY="21.0" prefHeight="15.0" prefWidth="24.0" />
+      <TextField fx:id="Recipientemail" layoutX="220.0" layoutY="209.0" prefHeight="52.0" prefWidth="357.0" />
+      <Label layoutX="52.0" layoutY="227.0" text="Recipeient email" />
+      <Button fx:id="ReadWrite" layoutX="398.0" layoutY="291.0" mnemonicParsing="false" onAction="#AllowReadWrite" text="Read/Write Access" />
+      <Button fx:id="ReadOnly" layoutX="138.0" layoutY="291.0" mnemonicParsing="false" onAction="#AllowRead" text="Read Only Access" />
+      <TextField fx:id="Filepath" layoutX="215.0" layoutY="84.0" prefHeight="52.0" prefWidth="357.0" />
+      <Button fx:id="btnBack" layoutX="30.0" layoutY="29.0" mnemonicParsing="false" onAction="#GoBack" text="Back" />
+      <Label layoutX="80.0" layoutY="110.0" text="File path" />
+   </children>
+</AnchorPane>

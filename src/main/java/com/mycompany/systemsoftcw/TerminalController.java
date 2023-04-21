@@ -154,8 +154,10 @@ public class TerminalController implements Initializable {
     }
     
     private void runNanoCommand(String filename){
+        String email = label.getText();
+        String filenamestore = "/data/"+email+"/"+filename;
         try{
-            ProcessBuilder processBuilder = new ProcessBuilder("nano "+ filename);
+            ProcessBuilder processBuilder = new ProcessBuilder("terminator", "-x", "nano " + filenamestore);
             processBuilder.redirectInput(ProcessBuilder.Redirect.INHERIT);
             Process process = processBuilder.start();
             
