@@ -45,5 +45,16 @@ public class ErrorWarningMonitor {
         } catch (IOException e) {
             System.err.println("Error: " + e.getMessage());
         }
+         EmailNotification.sendEmailToAdmin("Error/Warning occurred: " + message);
+    }
+
+    private static class EmailNotification {
+
+        private static void sendEmailToAdmin(String string) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        public EmailNotification() {
+        }
     }
 }
