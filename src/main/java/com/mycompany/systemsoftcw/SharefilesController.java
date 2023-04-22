@@ -64,7 +64,21 @@ public class SharefilesController implements Initializable {
     
     @FXML
     private void AllowReadWrite(ActionEvent event) throws IOException{
-       String email = label.getText();
+       String useremail = label.getText();
+       String recipemail = Recipientemail.getText();
+        String filepath = Filepath.getText();
+        
+        String userfilepath = "/data/"+useremail+"/"+filepath;
+        String destfilepath = "/data/"+recipemail+"/"+filepath;
+        
+        try{
+            File source = new File(userfilepath);
+            File destination = new File(destfilepath);
+            
+            Files.copy(source.toPath(), destination.toPath());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     
     @FXML
