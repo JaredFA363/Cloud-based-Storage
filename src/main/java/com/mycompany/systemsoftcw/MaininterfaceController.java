@@ -28,6 +28,9 @@ import java.io.FileWriter;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.BufferedWriter;
+import javafx.scene.control.ListView;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
 /**
  * FXML Controller class
@@ -57,10 +60,21 @@ public class MaininterfaceController implements Initializable {
     private TextField newFilenameOrPath;
     @FXML
     private Label label;
+    @FXML 
+    private ListView listView;
+    @FXML 
+    private TextField viewPath;
+    @FXML
+    private Button confirmbtn;
+    
+    @FXML
+    private void ConfirmPath(ActionEvent event){
+        String path = viewPath.getText();
+        showFolder(path);
+    }
     
     @FXML 
     private void logOut(ActionEvent event) throws IOException{
-        //App.setRoot("primary");
         String email = label.getText();
         removeUserInstance(email);
         
@@ -73,7 +87,6 @@ public class MaininterfaceController implements Initializable {
     
     @FXML
     private void GoToProfile(ActionEvent event) throws IOException{
-        //App.setRoot("profile");
         Parent root = FXMLLoader.load(getClass().getResource("profile.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -83,12 +96,6 @@ public class MaininterfaceController implements Initializable {
     
     @FXML
     private void GoToTerminal(ActionEvent event) throws IOException{
-        //App.setRoot("terminal");
-        /*Parent root = FXMLLoader.load(getClass().getResource("terminal.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();*/
         String email = label.getText();
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("terminal.fxml"));
@@ -141,6 +148,8 @@ public class MaininterfaceController implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+        }else if (inputted_Order.equals("Update File")){
+            Update(fileOrFolder,email);
         }
     }
     
@@ -230,7 +239,6 @@ public class MaininterfaceController implements Initializable {
         label.setText(email);
     }
     
-    
     private void removeUserInstance(String email) throws IOException {
         File file = new File("currentusers.txt");
         String target = email;
@@ -252,8 +260,35 @@ public class MaininterfaceController implements Initializable {
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
         writer.write(updatedContent);
         writer.close();
-    }
+    } 
+   
+    private void showFolder(String destination){
+        String email = label.getText();
+        String path = "/data/"+email+destination;
+        File folder = new File(path);
+        File[] listOfFiles = folder.listFiles();
+        ObservableList<String> items = FXCollections.observableArrayList();
 
+        for (File file : listOfFiles) {
+            if (file.isFile()) {
+                items.add(file.getName());
+            } else if (file.isDirectory()) {
+            items.add(file.getName() + "/");
+            }
+        }
+        
+        listView.getItems().addAll(items);
+        
+    }
+    
+    private void Update(String filename, String email) throws IOException{
+        String filenamestore = "/data/"+email+"/"+filename;
+        
+        ProcessBuilder processBuilder = new ProcessBuilder("mousepad " + filenamestore);
+        processBuilder.redirectInput(ProcessBuilder.Redirect.INHERIT);
+        processBuilder.start();
+    }
+    
     /**
      * Initializes the controller class.
      */
@@ -268,8 +303,10 @@ public class MaininterfaceController implements Initializable {
                 "Upload File",
                 "Rename File",
                 "Move File",
-                "Share File"
+                "Share File",
+                "Update File"
         );
+
         
     }    
     
