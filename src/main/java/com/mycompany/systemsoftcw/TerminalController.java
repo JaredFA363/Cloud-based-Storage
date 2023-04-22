@@ -56,7 +56,7 @@ public class TerminalController implements Initializable {
     }
     
     @FXML
-    private void Send_Command(){
+    private void Send_Command() throws IOException{
         String email = label.getText();
         String CommandArea = CommandLine.getText();
         String[] Commands = CommandArea.split("\n");
@@ -153,23 +153,13 @@ public class TerminalController implements Initializable {
         }
     }
     
-    private void runNanoCommand(String filename){
+    private void runNanoCommand(String filename) throws IOException{
         String email = label.getText();
         String filenamestore = "/data/"+email+"/"+filename;
-        try{
-            ProcessBuilder processBuilder = new ProcessBuilder("terminator", "-x", "nano " + filenamestore);
-            processBuilder.redirectInput(ProcessBuilder.Redirect.INHERIT);
-            Process process = processBuilder.start();
-            
-            InputStream inputStream = process.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                CommandLine.appendText(line + "\n");
-            }
-        }catch (IOException e){
-            System.out.println("\nFailed to run nano");
-        }
+        
+        ProcessBuilder processBuilder = new ProcessBuilder("terminator", "-x", "nano " + filenamestore);
+        processBuilder.redirectInput(ProcessBuilder.Redirect.INHERIT);
+        processBuilder.start();
     }
     
     public void setEmails(String email){
