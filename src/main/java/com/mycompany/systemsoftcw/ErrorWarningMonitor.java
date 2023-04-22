@@ -40,7 +40,7 @@ public class ErrorWarningMonitor {
         }
         
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(ADMIN_LOG_FILE_PATH, true)))) {
-            // Write the error/warning message to admin log file
+            // Write the error/warning message to admin log fil
             writer.println(message);
         } catch (IOException e) {
             System.err.println("Error: " + e.getMessage());
