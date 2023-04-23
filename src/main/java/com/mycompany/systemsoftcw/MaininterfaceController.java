@@ -167,10 +167,22 @@ public class MaininterfaceController implements Initializable {
                 alert.showAndWait();
             }else{
                 System.out.println("File already Exists");
+                
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error ");
+                alert.setHeaderText("Error");
+                alert.setContentText("File already exists");
+                alert.showAndWait();
             }
         }catch(IOException e){
             System.out.println("Error, Unable to create File");
             e.printStackTrace();
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error ");
+            alert.setHeaderText("Error");
+            alert.setContentText("Failed to create file");
+            alert.showAndWait();
         }
     }
     
@@ -186,6 +198,12 @@ public class MaininterfaceController implements Initializable {
             alert.showAndWait();
         }else{
             System.out.println("Failed create Folder");
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error ");
+            alert.setHeaderText("Error");
+            alert.setContentText("Failed to create Folder");
+            alert.showAndWait();
         }
     }
     
@@ -201,6 +219,12 @@ public class MaininterfaceController implements Initializable {
             alert.showAndWait();
         }else{
             System.out.println("Failed to delete");
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error ");
+            alert.setHeaderText("Error");
+            alert.setContentText("Failed to delete");
+            alert.showAndWait();
         }
     }
     
@@ -218,6 +242,12 @@ public class MaininterfaceController implements Initializable {
             alert.showAndWait();
         }catch(Exception e){
             System.out.println("Failed to copy file");
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error ");
+            alert.setHeaderText("Error");
+            alert.setContentText("Failed to copy make sure both filepaths are correct");
+            alert.showAndWait();
         }
     }
     
@@ -238,9 +268,21 @@ public class MaininterfaceController implements Initializable {
             catch(IOException e) {
                 System.out.println("Cannot upload File");
                 e.printStackTrace();
+                
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error ");
+                alert.setHeaderText("Error");
+                alert.setContentText("Failed to upload file make sure second textfield has correct destination");
+                alert.showAndWait();
             }
         } else{
             System.out.println("You have not selected a file");
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error ");
+            alert.setHeaderText("Error");
+            alert.setContentText("Failed to upload file");
+            alert.showAndWait();
         }
       
             
@@ -260,6 +302,12 @@ public class MaininterfaceController implements Initializable {
             
         }else{
             System.out.println("Failed to Rename");
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error ");
+            alert.setHeaderText("Error");
+            alert.setContentText("Failed to rename file");
+            alert.showAndWait();
         }
     }
     
@@ -276,6 +324,12 @@ public class MaininterfaceController implements Initializable {
             alert.showAndWait();
         }else{
             System.out.println("Failed to Move");
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error ");
+            alert.setHeaderText("Error");
+            alert.setContentText("Failed to move file make sure both source and destination exist");
+            alert.showAndWait();
         }
     }
     
@@ -342,6 +396,12 @@ public class MaininterfaceController implements Initializable {
             alert.showAndWait();
         }catch(Exception e){
             System.out.println("Failed to download");
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error ");
+            alert.setHeaderText("Error");
+            alert.setContentText("Failed to download file make sure file exists");
+            alert.showAndWait();
             
         }
     }

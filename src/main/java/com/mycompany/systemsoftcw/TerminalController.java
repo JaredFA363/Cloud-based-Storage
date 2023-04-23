@@ -35,6 +35,8 @@ public class TerminalController implements Initializable {
     @FXML
     private TextArea CommandLine;
     @FXML
+    private TextArea CommandLineInput;
+    @FXML
     private Label label;
    
     
@@ -58,7 +60,7 @@ public class TerminalController implements Initializable {
     @FXML
     private void Send_Command() throws IOException{
         String email = label.getText();
-        String CommandArea = CommandLine.getText();
+        String CommandArea = CommandLineInput.getText();
         String[] Commands = CommandArea.split("\n");
         String lastLine = Commands[Commands.length - 1];
         
@@ -99,6 +101,9 @@ public class TerminalController implements Initializable {
         }else if(WordsinCommand[0].equals("nano") && WordsinCommand.length == 2){
             String filename = WordsinCommand[1];
             runNanoCommand(filename);
+            
+        }else if(WordsinCommand[0].equals("--help")){
+            runHelp();
             
         }else{
             CommandLine.appendText("\nIncorrect Command Error type --help to see commands");
@@ -153,6 +158,7 @@ public class TerminalController implements Initializable {
         }
     }
     
+    // To run need to do sudo chmod 777 /data
     private void runNanoCommand(String filename) throws IOException{
         String email = label.getText();
         String filenamestore = "/data/"+email+"/"+filename;
@@ -160,6 +166,19 @@ public class TerminalController implements Initializable {
         ProcessBuilder processBuilder = new ProcessBuilder("terminator", "-x", "nano " + filenamestore);
         processBuilder.redirectInput(ProcessBuilder.Redirect.INHERIT);
         processBuilder.start();
+    }
+    
+    private void runHelp(){
+        CommandLine.appendText("\n\n"+ "Make sure you are on a new line when running command"
+                + "\nCommand Syntax: "
+                + "\nps"
+                + "\nls"
+                + "\ntree"
+                + "\nwhoami"
+                + "\nnano + filepathexample"
+                + "\ncp filename newfilename"
+                + "\nmkdir foldername"
+                + "\nmv filepath destinationpath ");
     }
     
     public void setEmails(String email){
