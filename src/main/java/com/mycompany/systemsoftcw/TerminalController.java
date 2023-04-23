@@ -24,7 +24,11 @@ import javafx.scene.Node;
 /**
  * FXML Controller class
  *
- * @author ntu-user
+ * @author N0992216
+ * 
+ * @brief Terminal Controller Class
+ * 
+ * @details User should be able to run terminal commands on this page.
  */
 public class TerminalController implements Initializable {
 
@@ -39,7 +43,11 @@ public class TerminalController implements Initializable {
     @FXML
     private Label label;
    
-    
+    /**
+    * @brief Go Back to files function
+    * 
+    * @details Sends user back to the main interface 
+    */
     @FXML
     private void BackToFiles(ActionEvent event) throws IOException{
         //App.setRoot("maininterface");
@@ -57,6 +65,12 @@ public class TerminalController implements Initializable {
         stage.show();
     }
     
+    /**
+    * @brief Send function
+    * 
+    * @details Get the last line from command line then executes the command.
+    * If cannot execute sends error message.
+    */
     @FXML
     private void Send_Command() throws IOException{
         String email = label.getText();
@@ -110,6 +124,11 @@ public class TerminalController implements Initializable {
         }
     }
     
+    /**
+    * @brief run Ps Command function
+    * 
+    * @details Outputs processes onto command line 
+    */
     private void runPsCommand(){
         try{
             ProcessBuilder processBuilder = new ProcessBuilder("ps");
@@ -126,6 +145,11 @@ public class TerminalController implements Initializable {
         }
     }
     
+    /**
+    * @brief run tree Command function
+    * 
+    * @details Outputs tree command onto command line 
+    */
     private void runTreeCommand(){
         try{
             ProcessBuilder processBuilder = new ProcessBuilder("tree");
@@ -142,6 +166,11 @@ public class TerminalController implements Initializable {
         }
     }
     
+    /**
+    * @brief run Ls Command function
+    * 
+    * @details Outputs list of files onto command line 
+    */
     private void runLsCommand(){       
         try{
             ProcessBuilder processBuilder = new ProcessBuilder("ls");
@@ -158,8 +187,13 @@ public class TerminalController implements Initializable {
         }
     }
     
-    // To run need to do sudo chmod 777 /data
+    /**
+    * @brief run Nano Command function
+    * 
+    * @details Opens Nano for user 
+    */
     private void runNanoCommand(String filename) throws IOException{
+        // Need run need to do sudo chmod 777 /data on terminal to get nano to work
         String email = label.getText();
         String filenamestore = "/data/"+email+"/"+filename;
         
@@ -168,6 +202,12 @@ public class TerminalController implements Initializable {
         processBuilder.start();
     }
     
+    /**
+    * @brief Help function
+    * 
+    * @details Outputs Syntax of commands
+    * 
+    */
     private void runHelp(){
         CommandLine.appendText("\n\n"+ "Make sure you are on a new line when running command"
                 + "\nCommand Syntax: "
@@ -181,6 +221,13 @@ public class TerminalController implements Initializable {
                 + "\nmv filepath destinationpath ");
     }
     
+    /**
+    * @brief Set email function
+    * 
+    * @details SEts the email for the label
+    * 
+    * @param[in] user email 
+    */
     public void setEmails(String email){
         label.setText(email);
     }

@@ -17,11 +17,8 @@ import javafx.scene.control.TextField;
 import java.io.File;
 import java.io.FileWriter;
 import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
-//import java.sql.Statement;
 
 import java.util.Base64;
 import java.security.NoSuchAlgorithmException;
@@ -45,7 +42,7 @@ import javafx.scene.control.Alert.AlertType;
 /**
  * FXML Controller class
  *
- * @author ntu-user
+ * @author N0992216
  * 
  * @brief Register Controller Class
  * 
@@ -71,6 +68,16 @@ public class RegistController implements Initializable {
     private int iterations = 10000;
     private int keylength = 256;
     private String passHashKey = "PBKDF2WithHmacSHA1";
+    
+    /**
+    *
+    * @brief Confirm function
+    * 
+    * @details Uses the other functions to register the user.
+    * Confirms both email and password are valid. Password is then hashed and both values are stored in database.
+    * 
+    */    
+    
     
     @FXML
     private void confirmRegist(ActionEvent event) throws IOException, InvalidKeySpecException {
@@ -111,6 +118,7 @@ public class RegistController implements Initializable {
     * @brief Create Table Procedure
     * 
     * @details Takes the table name. If the table doesn't exist. Then creates it.
+    * 
     * @param[in] The table name
     */
     
@@ -173,6 +181,17 @@ public class RegistController implements Initializable {
         }
     }
     
+    /**
+    *
+    * @brief Get salt value Function
+    * 
+    * @details Creates the salt value
+    * 
+    * @param[in] length of salt
+    * 
+    * @returns salt value
+    */
+    
     private String getSaltvalue(int length) throws InvalidKeySpecException{
         StringBuilder finalval = new StringBuilder(length);
         for (int i =0; i<length; i++){
@@ -180,6 +199,18 @@ public class RegistController implements Initializable {
         }
         return new String(finalval);
     }
+    
+    /**
+    *
+    * @brief Hash Function
+    * 
+    * @details Creates the hash of password
+    * 
+    * @param[in] password input by the user
+    * @param[in] salt value
+    * 
+    * @returns The hashed password
+    */
     
     private byte[] hash(char[] password, byte[] salt) throws InvalidKeySpecException{
         PBEKeySpec spec = new PBEKeySpec(password, salt, iterations, keylength);
@@ -198,7 +229,7 @@ public class RegistController implements Initializable {
     
     /**
     *
-    * @brief Generate Secure Passwword Function
+    * @brief Generate Secure Password Function
     * 
     * @details Takes in the password. Uses the hash function to hash the password and create the secure password
     * 
@@ -241,6 +272,17 @@ public class RegistController implements Initializable {
             e.printStackTrace();
         }
     }
+    
+    /**
+    *
+    * @brief Validate email Function
+    * 
+    * @details Checks the syntax of the email
+    * 
+    * @param[in] User's email
+    * 
+    * @returns True if email syntax is correct, false if not.
+    */
     
     public boolean validateEmail(String email){
         boolean confirm_email= true;

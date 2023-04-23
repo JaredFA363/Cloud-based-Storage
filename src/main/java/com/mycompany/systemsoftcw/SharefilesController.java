@@ -26,7 +26,11 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author ntu-user
+ * @author N0992216
+ * 
+ * @brief Share files Controller class
+ * 
+ * @details Allows a user to share files with another user. The user can give either read-write or read-only access
  */
 public class SharefilesController implements Initializable {
 
@@ -42,6 +46,15 @@ public class SharefilesController implements Initializable {
     private Button ReadWrite;
     @FXML
     private Label label;
+    
+    /**
+    * @brief Send File with Read only access
+    * 
+    * @details Allows a user to send a file to another user with only read access. 
+    * Takes in the recipients email and the file path of the file to send. 
+    * Then send it by placing int the recipient folder.
+    * 
+    */
     
     @FXML
     private void AllowRead(ActionEvent event) throws IOException{
@@ -76,6 +89,15 @@ public class SharefilesController implements Initializable {
         }
     }
     
+    /**
+    * @brief Send File with Read write access
+    * 
+    * @details Allows a user to send a file to another user with read and write access. 
+    * Takes in the recipients email and the file path of the file to send. 
+    * Then send it by placing int the recipient folder.
+    * 
+    */
+    
     @FXML
     private void AllowReadWrite(ActionEvent event) throws IOException{
        String useremail = label.getText();
@@ -107,6 +129,12 @@ public class SharefilesController implements Initializable {
         }
     }
     
+    /**
+    * @brief Go Back function
+    * 
+    * @details Sends user back to the main interface 
+    */
+    
     @FXML
     private void GoBack(ActionEvent event) throws IOException{
         String email = label.getText();
@@ -122,6 +150,14 @@ public class SharefilesController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    
+    /**
+    * @brief Set email function
+    * 
+    * @details SEts the email for the label
+    * 
+    * @param[in] user email 
+    */
     
     public void setEmails(String email){
         label.setText(email);

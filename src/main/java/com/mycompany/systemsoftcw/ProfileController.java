@@ -35,7 +35,7 @@ import javafx.scene.control.Alert;
 /**
  * FXML Controller class
  *
- * @author ntu-user
+ * @author N0992216
  * 
  * @brief Profile Controller class
  * 

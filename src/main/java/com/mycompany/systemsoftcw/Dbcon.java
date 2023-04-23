@@ -9,7 +9,7 @@ import java.sql.*;
 /**
  * @brief Database Connection Class
  * 
- * @author ntu-user
+ * @author N0992216
  * 
  * @details This function creates the connection between the program and the AccountDB database
  * return connection to be used with the other controllers. E.g. Login & Register Controllers

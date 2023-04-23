@@ -7,7 +7,6 @@ package com.mycompany.systemsoftcw;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
-//import java.lang.reflect.InvocationTargetException;
 import java.security.spec.InvalidKeySpecException;
 
 import java.io.IOException;
@@ -41,7 +40,7 @@ import javafx.scene.Node;
  *
  * @brief Login Controller Class 
  * 
- * @author ntu-user
+ * @author N0992216
  * 
  * @details Login Controller connects to Login view. Takes in the email and password of the user.
  * Allows Users to go into the main program if details are correct.
@@ -60,6 +59,17 @@ public class LoginController implements Initializable{
     String loginpass;
     Boolean validated;
     String inPass;
+    
+    /**
+    *
+    * @brief Confirm Function
+    * 
+    * @details When the login button is pressed, this function checks if a valid email and password has been inputted.
+    * If it has the user will be allowed access to the main interface. If not then will be shown an error message.
+    * 
+    * @param[in] Action event event
+    * 
+    */
     
     @FXML 
     private void confirmLogins(ActionEvent event) throws IOException, InvalidKeySpecException{
@@ -169,6 +179,16 @@ public class LoginController implements Initializable{
         return flag;
     }
     
+    /**
+    *
+    * @brief Set Folder Function
+    * 
+    * @details Sets the folder that the users files will be stored in in the docker container.
+    * 
+    * @param[in] The email inputted by the user
+    * 
+    */
+    
     private void setFolder(String email){
         Path path = Paths.get("/data/"+email);
         
@@ -182,6 +202,16 @@ public class LoginController implements Initializable{
         }
     }
     
+    /**
+    *
+    * @brief Append User Function
+    * 
+    * @details Appends a user's email to a text file when they are logged in and active
+    * 
+    * @param[in] The email inputted by the user 
+    * 
+    */
+    
     private void appendUser(String email){
         String data = email;
         String filename = "currentusers.txt";
@@ -194,6 +224,18 @@ public class LoginController implements Initializable{
             e.printStackTrace();
         }
     }
+    
+    /**
+    *
+    * @brief Validate User Function
+    * 
+    * @details Checks if user's email is already in text file if not then they are allowed to login.
+    * If it is then an error message is displayed.
+    * 
+    * @param[in] The email inputted by the user
+    * 
+    * @returns The Boolean variable flag which shows if the user is already logged in or not 
+    */
     
     private boolean checkUserInstance(String email) throws IOException{
         String filePath = "currentusers.txt";

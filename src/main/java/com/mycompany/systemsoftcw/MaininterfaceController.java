@@ -36,7 +36,7 @@ import javafx.scene.control.Alert;
 /**
  * FXML Controller class
  *
- * @author ntu-user
+ * @author N0992216
  * 
  * @brief Main Interface Controller Class
  * 
@@ -68,11 +68,27 @@ public class MaininterfaceController implements Initializable {
     @FXML
     private Button confirmbtn;
     
+    /**
+    * @brief Confirm Path
+    * 
+    * @details Confirms the path for the list view
+    * 
+    */
+    
     @FXML
     private void ConfirmPath(ActionEvent event){
         String path = viewPath.getText();
         showFolder(path);
     }
+    
+    /**
+    * @brief logout function
+    * 
+    * @details Set users to initial screen and removes email from text file
+    * THis means they are no longer active.
+    * 
+    * @param[in] event
+    */
     
     @FXML 
     private void logOut(ActionEvent event) throws IOException{
@@ -86,6 +102,14 @@ public class MaininterfaceController implements Initializable {
         stage.show();
     }
     
+    /**
+    * @brief Go to Profile function
+    * 
+    * @details Sends user to profile screen
+    * 
+    * @param[in] event
+    */
+    
     @FXML
     private void GoToProfile(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("profile.fxml"));
@@ -94,6 +118,14 @@ public class MaininterfaceController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    
+    /**
+    * @brief Go to Terminal function
+    * 
+    * @details Sends user to terminal screen
+    * 
+    * @param[in] event
+    */
     
     @FXML
     private void GoToTerminal(ActionEvent event) throws IOException{
@@ -111,6 +143,17 @@ public class MaininterfaceController implements Initializable {
         stage.show();
         
     }
+    
+    /**
+    * @brief Submit file order function
+    * 
+    * @details Gets what the user wants to do with a file or folder.
+    * Gets the path to the specific file(s) or folder(s).
+    * Then uses other functions to execute.
+    * Displays either a Success or error message at the end.
+    * 
+    * @param[in] event
+    */
     
     @FXML
     private void Submit_File_Order(ActionEvent event) throws IOException{
@@ -154,6 +197,14 @@ public class MaininterfaceController implements Initializable {
         }
     }
     
+    /**
+    * @brief Create File function
+    * 
+    * @details Creates file in the user's account folder.
+    * 
+    * @param[in] Filename
+    * @param[in] Email
+    */ 
     private void CreateFile(String filename, String email){
         try{
             File newfileObj = new File("/data/"+email+"/"+filename);
@@ -186,6 +237,14 @@ public class MaininterfaceController implements Initializable {
         }
     }
     
+    /**
+    * @brief Create Folder function
+    * 
+    * @details Creates folder in the user's account folder.
+    * 
+    * @param[in] Filename
+    * @param[in] Email
+    */
     public void CreateFolder(String Foldername, String email){
         File newfileObj = new File("/data/"+email+"/"+Foldername);
         if (newfileObj.mkdir()){
@@ -207,6 +266,14 @@ public class MaininterfaceController implements Initializable {
         }
     }
     
+    /**
+    * @brief Deletes File function
+    * 
+    * @details Deletes file in the user's account folder.
+    * 
+    * @param[in] Filename
+    * @param[in] Email
+    */
     private void deleteFile(String filename, String email){
         File newfileObj = new File("/data/"+email+"/"+filename);
         if (newfileObj.delete()){
@@ -228,6 +295,15 @@ public class MaininterfaceController implements Initializable {
         }
     }
     
+    /**
+    * @brief Copy File function
+    * 
+    * @details Copies file in the user's account folder. Must specify the new name of copied file.
+    * 
+    * @param[in] Filename
+    * @param[in] New Filename
+    * @param[in] Email
+    */
     public void CopyFile(String filename, String newfilename, String email){
         File newfileObj = new File("/data/"+email+"/"+filename);
         File copiedfile = new File("/data/"+email+"/"+newfilename);
@@ -251,6 +327,13 @@ public class MaininterfaceController implements Initializable {
         }
     }
     
+    /**
+    * @brief Upload File function
+    * 
+    * @details Uploads file from local machine into the user's account folder.
+    * 
+    * @param[in] destination
+    */
     private void UploadFile(String destination){
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(null);
@@ -288,6 +371,15 @@ public class MaininterfaceController implements Initializable {
             
     }
 
+    /**
+    * @brief Rename File function
+    * 
+    * @details Renames file in the user's account folder.
+    * 
+    * @param[in] Current Filename
+    * @param[in] New Filename
+    * @param[in] Email
+    */
     private void renameFile(String currentfilename, String newfilename, String email){
         File currentfileObj = new File("/data/"+email+"/"+currentfilename);
         File newfileObj = new File("/data/"+email+"/"+newfilename);
@@ -311,6 +403,15 @@ public class MaininterfaceController implements Initializable {
         }
     }
     
+    /**
+    * @brief Move File function
+    * 
+    * @details Moves file from one directory to another.
+    * 
+    * @param[in] Current Filename
+    * @param[in] New Filename
+    * @param[in] Email
+    */
     public void moveFile(String currentfilename, String newfilename, String email){
         File currentfileObj = new File("/data/"+email+"/"+currentfilename);
         File newfileObj = new File("/data/"+email+"/"+newfilename);
@@ -333,10 +434,25 @@ public class MaininterfaceController implements Initializable {
         }
     }
     
+    /**
+    * @brief Set email function
+    * 
+    * @details SEts the email for the label
+    * 
+    * @param[in] user email 
+    */
+    
     public void setEmail(String email){
         label.setText(email);
     }
     
+    /**
+    * @brief Remove User Instance function
+    * 
+    * @details Removes user email from text file indicating they are no longer logged in.
+    * 
+    * @param[in] Email
+    */
     private void removeUserInstance(String email) throws IOException {
         File file = new File("currentusers.txt");
         String target = email;
@@ -360,6 +476,13 @@ public class MaininterfaceController implements Initializable {
         writer.close();
     } 
    
+    /**
+    * @brief Show Folder function
+    * 
+    * @details Lists all files and folders. 
+    * 
+    * @param[in] destination
+    */
     private void showFolder(String destination){
         String email = label.getText();
         String path = "/data/"+email+destination;
@@ -379,6 +502,14 @@ public class MaininterfaceController implements Initializable {
         
     }
     
+    /**
+    * @brief download File function
+    * 
+    * @details Downloads file to the current directory
+    * 
+    * @param[in] Filename
+    * @param[in] Email
+    */
     private void downloadFile(String filename, String email) throws IOException{
         String userfilepath = "/data/"+email+"/"+filename;
         String destfilepath = filename;
@@ -408,6 +539,9 @@ public class MaininterfaceController implements Initializable {
     
     /**
      * Initializes the controller class.
+     * 
+     * @brief sets the values for the combo box
+     * 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
