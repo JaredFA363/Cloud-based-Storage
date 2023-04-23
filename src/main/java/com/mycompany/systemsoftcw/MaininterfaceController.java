@@ -31,6 +31,7 @@ import java.io.BufferedWriter;
 import javafx.scene.control.ListView;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
+import javafx.scene.control.Alert;
 
 /**
  * FXML Controller class
@@ -148,8 +149,8 @@ public class MaininterfaceController implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        }else if (inputted_Order.equals("Update File")){
-            Update(fileOrFolder,email);
+        }else if (inputted_Order.equals("Download File")){
+            downloadFile(fileOrFolder,email);
         }
     }
     
@@ -158,6 +159,12 @@ public class MaininterfaceController implements Initializable {
             File newfileObj = new File("/data/"+email+"/"+filename);
             if (newfileObj.createNewFile()){
                 System.out.println("File Created");
+                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success ");
+                alert.setHeaderText("Created File");
+                alert.setContentText("File created");
+                alert.showAndWait();
             }else{
                 System.out.println("File already Exists");
             }
@@ -171,6 +178,12 @@ public class MaininterfaceController implements Initializable {
         File newfileObj = new File("/data/"+email+"/"+Foldername);
         if (newfileObj.mkdir()){
             System.out.println("Folder Created");
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success ");
+            alert.setHeaderText("Folder");
+            alert.setContentText("Folder created");
+            alert.showAndWait();
         }else{
             System.out.println("Failed create Folder");
         }
@@ -180,6 +193,12 @@ public class MaininterfaceController implements Initializable {
         File newfileObj = new File("/data/"+email+"/"+filename);
         if (newfileObj.delete()){
             System.out.println("File Deleted");
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success ");
+            alert.setHeaderText("File deleted");
+            alert.setContentText("File deleted");
+            alert.showAndWait();
         }else{
             System.out.println("Failed to delete");
         }
@@ -191,6 +210,12 @@ public class MaininterfaceController implements Initializable {
         try{
             Files.copy(newfileObj.toPath(), copiedfile.toPath());
             System.out.println("File Copied");
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success ");
+            alert.setHeaderText("Copied File");
+            alert.setContentText("File copied successfully");
+            alert.showAndWait();
         }catch(Exception e){
             System.out.println("Failed to copy file");
         }
@@ -203,6 +228,12 @@ public class MaininterfaceController implements Initializable {
             try{
                 Files.copy(selectedFile.toPath(),Paths.get(destination, selectedFile.getName()), StandardCopyOption.REPLACE_EXISTING);
                 System.out.println("File has been uploaded!");
+                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success ");
+                alert.setHeaderText("Upload File");
+                alert.setContentText("File uploaded to cloud");
+                alert.showAndWait();
             }
             catch(IOException e) {
                 System.out.println("Cannot upload File");
@@ -220,6 +251,13 @@ public class MaininterfaceController implements Initializable {
         File newfileObj = new File("/data/"+email+"/"+newfilename);
         if (currentfileObj.renameTo(newfileObj)){
             System.out.println("File Renamed");
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success ");
+            alert.setHeaderText("File renamed");
+            alert.setContentText("File renamed");
+            alert.showAndWait();
+            
         }else{
             System.out.println("Failed to Rename");
         }
@@ -230,6 +268,12 @@ public class MaininterfaceController implements Initializable {
         File newfileObj = new File("/data/"+email+"/"+newfilename);
         if (currentfileObj.renameTo(newfileObj)){
             System.out.println("File moved");
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success ");
+            alert.setHeaderText("Moved File");
+            alert.setContentText("File moved successfully");
+            alert.showAndWait();
         }else{
             System.out.println("Failed to Move");
         }
@@ -281,12 +325,25 @@ public class MaininterfaceController implements Initializable {
         
     }
     
-    private void Update(String filename, String email) throws IOException{
-        String filenamestore = "/data/"+email+"/"+filename;
+    private void downloadFile(String filename, String email) throws IOException{
+        String userfilepath = "/data/"+email+"/"+filename;
+        String destfilepath = filename;
         
-        ProcessBuilder processBuilder = new ProcessBuilder("mousepad " + filenamestore);
-        processBuilder.redirectInput(ProcessBuilder.Redirect.INHERIT);
-        processBuilder.start();
+        File source = new File(userfilepath);
+        File destination = new File(destfilepath);
+        
+        try{
+            Files.copy(source.toPath(), destination.toPath());
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success ");
+            alert.setHeaderText("Download");
+            alert.setContentText("File downloaded");
+            alert.showAndWait();
+        }catch(Exception e){
+            System.out.println("Failed to download");
+            
+        }
     }
     
     /**
@@ -304,7 +361,7 @@ public class MaininterfaceController implements Initializable {
                 "Rename File",
                 "Move File",
                 "Share File",
-                "Update File"
+                "Download File"
         );
 
         

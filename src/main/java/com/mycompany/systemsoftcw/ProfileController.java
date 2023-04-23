@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -29,6 +30,7 @@ import javafx.stage.Stage;
 import java.nio.file.*;
 import java.nio.file.Paths;
 import java.util.Comparator;
+import javafx.scene.control.Alert;
 
 /**
  * FXML Controller class
@@ -92,6 +94,12 @@ public class ProfileController implements Initializable {
                 System.out.println("Folder Renamed");
             }
             
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success ");
+            alert.setHeaderText("Updated details");
+            alert.setContentText("Details was updated");
+            alert.showAndWait();
+            
             FXMLLoader loader = new FXMLLoader(getClass().getResource("maininterface.fxml"));
             Parent root = loader.load();
             
@@ -105,6 +113,12 @@ public class ProfileController implements Initializable {
         }
         catch(SQLException e){
             System.out.println("Failed to update" + e);
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error ");
+            alert.setHeaderText("Error Failed ");
+            alert.setContentText("Failed to update");
+            alert.showAndWait();
         }
         finally{
             try{
@@ -138,6 +152,12 @@ public class ProfileController implements Initializable {
             
             Files.walk(directory).sorted(Comparator.reverseOrder()).map(Path::toFile).forEach(File::delete);
             
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success ");
+            alert.setHeaderText("Deleted details");
+            alert.setContentText("Details was deleted");
+            alert.showAndWait();
+            
             Parent root = FXMLLoader.load(getClass().getResource("primary.fxml"));
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -146,6 +166,12 @@ public class ProfileController implements Initializable {
         }
         catch (SQLException e){
             System.out.println("Failed to delete" + e);
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error ");
+            alert.setHeaderText("Error Failed ");
+            alert.setContentText("Failed to delete");
+            alert.showAndWait();
         }
         finally{
             try{

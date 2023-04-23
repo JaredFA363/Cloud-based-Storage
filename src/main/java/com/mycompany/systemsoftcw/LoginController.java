@@ -27,6 +27,9 @@ import java.io.FileWriter;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -70,6 +73,13 @@ public class LoginController implements Initializable{
         if (validated == true){
             if (checkUserInstance(loginemail) == true){
                 System.out.println("Already Logged In");
+                
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error ");
+                alert.setHeaderText("Error Already Logged in");
+                alert.setContentText("Cannot be logged in twice");
+                alert.showAndWait();
+                
                 Parent root = FXMLLoader.load(getClass().getResource("primary.fxml"));
                 Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
@@ -93,7 +103,14 @@ public class LoginController implements Initializable{
             }
         }
         else{
-            System.out.println("Incorrect Email pr Passwprd");
+            System.out.println("Incorrect Email or Passwprd");
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error ");
+            alert.setHeaderText("Error Incorrect");
+            alert.setContentText("Incorrect Username or password");
+            alert.showAndWait();
+            
             Parent root = FXMLLoader.load(getClass().getResource("primary.fxml"));
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);

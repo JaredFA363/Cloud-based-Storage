@@ -39,6 +39,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 /**
  * FXML Controller class
  *
@@ -77,7 +80,13 @@ public class RegistController implements Initializable {
         registerpass = regPassword.getText();
         if (validateEmail(registeremail)==false) {
             System.out.println("Incorrect email");
-            //App.setRoot("primary");
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error ");
+            alert.setHeaderText("Error Incorrect email");
+            alert.setContentText("Please format your email as xyz@email.com.");
+            alert.showAndWait();
+            
             Parent root = FXMLLoader.load(getClass().getResource("primary.fxml"));
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);

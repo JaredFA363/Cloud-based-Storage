@@ -20,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 /**
@@ -57,8 +58,21 @@ public class SharefilesController implements Initializable {
             
             Files.copy(source.toPath(), destination.toPath());
             destination.setReadOnly();
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success ");
+            alert.setHeaderText("Shared File");
+            alert.setContentText("Files shared with Read-Only access");
+            alert.showAndWait();
+            
         }catch(Exception e){
             e.printStackTrace();
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error ");
+            alert.setHeaderText("Error");
+            alert.setContentText("Failed to share file");
+            alert.showAndWait();
         }
     }
     
@@ -76,8 +90,20 @@ public class SharefilesController implements Initializable {
             File destination = new File(destfilepath);
             
             Files.copy(source.toPath(), destination.toPath());
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success ");
+            alert.setHeaderText("Shared File");
+            alert.setContentText("Files shared with Read-Write access");
+            alert.showAndWait();
         }catch(Exception e){
             e.printStackTrace();
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error ");
+            alert.setHeaderText("Error");
+            alert.setContentText("Failed to share file");
+            alert.showAndWait();
         }
     }
     

@@ -101,7 +101,7 @@ public class TerminalController implements Initializable {
             runNanoCommand(filename);
             
         }else{
-            CommandLine.appendText("\nIncorrect Command Error");
+            CommandLine.appendText("\nIncorrect Command Error type --help to see commands");
         }
     }
     
@@ -137,7 +137,7 @@ public class TerminalController implements Initializable {
         }
     }
     
-    private void runLsCommand(){
+    private void runLsCommand(){       
         try{
             ProcessBuilder processBuilder = new ProcessBuilder("ls");
             Process process = processBuilder.start();
