@@ -1,0 +1,75 @@
+\hypertarget{classcom_1_1mycompany_1_1systemsoftcw_1_1Encryption}{}\doxysection{com.\+mycompany.\+systemsoftcw.\+Encryption Class Reference}
+\label{classcom_1_1mycompany_1_1systemsoftcw_1_1Encryption}\index{com.mycompany.systemsoftcw.Encryption@{com.mycompany.systemsoftcw.Encryption}}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classcom_1_1mycompany_1_1systemsoftcw_1_1Encryption_a7fd7fedededa8af68ea4477f5e96a72f}{encrypt}} (Path input\+File\+Path, Path output\+File\+Path, String username)  throws Exception
+\item 
+static void \mbox{\hyperlink{classcom_1_1mycompany_1_1systemsoftcw_1_1Encryption_a11e9168a101be3aca676896601617858}{decript}} (Path input\+File\+Path, Path output\+File\+Path, String username)  throws Exception
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+method for encryption and decryption using A\+ES A\+L\+GO \begin{DoxyAuthor}{Author}
+n1004932 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcom_1_1mycompany_1_1systemsoftcw_1_1Encryption_a11e9168a101be3aca676896601617858}\label{classcom_1_1mycompany_1_1systemsoftcw_1_1Encryption_a11e9168a101be3aca676896601617858}} 
+\index{com.mycompany.systemsoftcw.Encryption@{com.mycompany.systemsoftcw.Encryption}!decript@{decript}}
+\index{decript@{decript}!com.mycompany.systemsoftcw.Encryption@{com.mycompany.systemsoftcw.Encryption}}
+\doxysubsubsection{\texorpdfstring{decript()}{decript()}}
+{\footnotesize\ttfamily static void com.\+mycompany.\+systemsoftcw.\+Encryption.\+decript (\begin{DoxyParamCaption}\item[{Path}]{input\+File\+Path,  }\item[{Path}]{output\+File\+Path,  }\item[{String}]{username }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Decrypts the input file using A\+ES algorithm with a key derived from the user\textquotesingle{}s password and a generated salt stored in the file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+File\+Path} & the path of the input file \\
+\hline
+{\em output\+File\+Path} & the path of the output file \\
+\hline
+{\em username} & the username of the user whose password is used to derive the encryption key \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em I\+O\+Exception} & if there is an I/O error while reading or writing the files \\
+\hline
+{\em No\+Such\+Algorithm\+Exception} & if the specified encryption algorithm is not available \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classcom_1_1mycompany_1_1systemsoftcw_1_1Encryption_a7fd7fedededa8af68ea4477f5e96a72f}\label{classcom_1_1mycompany_1_1systemsoftcw_1_1Encryption_a7fd7fedededa8af68ea4477f5e96a72f}} 
+\index{com.mycompany.systemsoftcw.Encryption@{com.mycompany.systemsoftcw.Encryption}!encrypt@{encrypt}}
+\index{encrypt@{encrypt}!com.mycompany.systemsoftcw.Encryption@{com.mycompany.systemsoftcw.Encryption}}
+\doxysubsubsection{\texorpdfstring{encrypt()}{encrypt()}}
+{\footnotesize\ttfamily static void com.\+mycompany.\+systemsoftcw.\+Encryption.\+encrypt (\begin{DoxyParamCaption}\item[{Path}]{input\+File\+Path,  }\item[{Path}]{output\+File\+Path,  }\item[{String}]{username }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+The database U\+RL uses the A\+ES technique to encrypt the supplied input file using the user\textquotesingle{}s password as the key and a salt that is created at random.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+File\+Path} & the path of the input file \\
+\hline
+{\em output\+File\+Path} & the path of the output file \\
+\hline
+{\em username} & the username of the user whose password is used to derive the encryption key \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em I\+O\+Exception} & if there is an I/O error while reading or writing the files \\
+\hline
+{\em No\+Such\+Algorithm\+Exception} & if the specified encryption algorithm is not available \\
+\hline
+{\em Invalid\+Key\+Spec\+Exception} & if the specified key specification isn\textquotesingle{}t valid \\
+\hline
+{\em S\+Q\+L\+Exception} & if there is an error accessing the database \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Encryption.\+java\end{DoxyCompactItemize}

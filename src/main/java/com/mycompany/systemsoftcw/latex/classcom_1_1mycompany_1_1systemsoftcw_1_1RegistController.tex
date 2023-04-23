@@ -1,0 +1,152 @@
+\hypertarget{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController}{}\doxysection{com.\+mycompany.\+systemsoftcw.\+Regist\+Controller Class Reference}
+\label{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController}\index{com.mycompany.systemsoftcw.RegistController@{com.mycompany.systemsoftcw.RegistController}}
+
+
+Register Controller Class.  
+
+
+
+
+Inheritance diagram for com.\+mycompany.\+systemsoftcw.\+Regist\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for com.\+mycompany.\+systemsoftcw.\+Regist\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_a57429a663cb726395221e4f86a4b11f6}{create\+Table}} (String table\+Name)
+\begin{DoxyCompactList}\small\item\em Create Table Procedure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_a66997c8d8e256cb5ee1e11c2b77747b8}{add\+User}} (String email, String password)
+\begin{DoxyCompactList}\small\item\em Add User Function. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_a9dff25e15410a669e76f16fd58de0314}{generate\+Secure\+Pass}} (String password)  throws Invalid\+Key\+Spec\+Exception 
+\begin{DoxyCompactList}\small\item\em Generate Secure Password Function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_a8381823c0f62843870d86813e5ceb8c2}{generate\+Or\+Load\+Salt}} ()  throws I\+O\+Exception, Invalid\+Key\+Spec\+Exception
+\begin{DoxyCompactList}\small\item\em Generate or Load Salt. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_a9fd126e5ede45ce420d3ced38a0bdff3}{validate\+Email}} (String email)
+\begin{DoxyCompactList}\small\item\em Validate email Function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_abf6df5de3e2f942eb58851f320b1082f}{initialize}} (U\+RL url, Resource\+Bundle rb)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Register Controller Class. 
+
+F\+X\+ML Controller class
+
+\begin{DoxyAuthor}{Author}
+N0992216
+\end{DoxyAuthor}
+The register controller takes in the user input from the controller view. Creates the table if it doesn\textquotesingle{}t exist hashes the password. Then adds both the email and password to the database. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_a66997c8d8e256cb5ee1e11c2b77747b8}\label{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_a66997c8d8e256cb5ee1e11c2b77747b8}} 
+\index{com.mycompany.systemsoftcw.RegistController@{com.mycompany.systemsoftcw.RegistController}!addUser@{addUser}}
+\index{addUser@{addUser}!com.mycompany.systemsoftcw.RegistController@{com.mycompany.systemsoftcw.RegistController}}
+\doxysubsubsection{\texorpdfstring{addUser()}{addUser()}}
+{\footnotesize\ttfamily void com.\+mycompany.\+systemsoftcw.\+Regist\+Controller.\+add\+User (\begin{DoxyParamCaption}\item[{String}]{email,  }\item[{String}]{password }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add User Function. 
+
+Takes in the username and password combination. Hashes the password. Then stores the email and hashed password into the database.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em The} & email inputted by the user \\
+\hline
+\mbox{\texttt{ in}}  & {\em password} & input \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_a57429a663cb726395221e4f86a4b11f6}\label{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_a57429a663cb726395221e4f86a4b11f6}} 
+\index{com.mycompany.systemsoftcw.RegistController@{com.mycompany.systemsoftcw.RegistController}!createTable@{createTable}}
+\index{createTable@{createTable}!com.mycompany.systemsoftcw.RegistController@{com.mycompany.systemsoftcw.RegistController}}
+\doxysubsubsection{\texorpdfstring{createTable()}{createTable()}}
+{\footnotesize\ttfamily void com.\+mycompany.\+systemsoftcw.\+Regist\+Controller.\+create\+Table (\begin{DoxyParamCaption}\item[{String}]{table\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Create Table Procedure. 
+
+Takes the table name. If the table doesn\textquotesingle{}t exist. Then creates it.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em The} & table name \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_a8381823c0f62843870d86813e5ceb8c2}\label{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_a8381823c0f62843870d86813e5ceb8c2}} 
+\index{com.mycompany.systemsoftcw.RegistController@{com.mycompany.systemsoftcw.RegistController}!generateOrLoadSalt@{generateOrLoadSalt}}
+\index{generateOrLoadSalt@{generateOrLoadSalt}!com.mycompany.systemsoftcw.RegistController@{com.mycompany.systemsoftcw.RegistController}}
+\doxysubsubsection{\texorpdfstring{generateOrLoadSalt()}{generateOrLoadSalt()}}
+{\footnotesize\ttfamily void com.\+mycompany.\+systemsoftcw.\+Regist\+Controller.\+generate\+Or\+Load\+Salt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception, Invalid\+Key\+Spec\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Generate or Load Salt. 
+
+Generates salt file if it doesn\textquotesingle{}t exist or loads it form the .salt file \mbox{\Hypertarget{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_a9dff25e15410a669e76f16fd58de0314}\label{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_a9dff25e15410a669e76f16fd58de0314}} 
+\index{com.mycompany.systemsoftcw.RegistController@{com.mycompany.systemsoftcw.RegistController}!generateSecurePass@{generateSecurePass}}
+\index{generateSecurePass@{generateSecurePass}!com.mycompany.systemsoftcw.RegistController@{com.mycompany.systemsoftcw.RegistController}}
+\doxysubsubsection{\texorpdfstring{generateSecurePass()}{generateSecurePass()}}
+{\footnotesize\ttfamily String com.\+mycompany.\+systemsoftcw.\+Regist\+Controller.\+generate\+Secure\+Pass (\begin{DoxyParamCaption}\item[{String}]{password }\end{DoxyParamCaption}) throws Invalid\+Key\+Spec\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Generate Secure Password Function. 
+
+Takes in the password. Uses the hash function to hash the password and create the secure password
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em password} & input by the user\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The hashed password 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_abf6df5de3e2f942eb58851f320b1082f}\label{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_abf6df5de3e2f942eb58851f320b1082f}} 
+\index{com.mycompany.systemsoftcw.RegistController@{com.mycompany.systemsoftcw.RegistController}!initialize@{initialize}}
+\index{initialize@{initialize}!com.mycompany.systemsoftcw.RegistController@{com.mycompany.systemsoftcw.RegistController}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily void com.\+mycompany.\+systemsoftcw.\+Regist\+Controller.\+initialize (\begin{DoxyParamCaption}\item[{U\+RL}]{url,  }\item[{Resource\+Bundle}]{rb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initializes the controller class. \mbox{\Hypertarget{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_a9fd126e5ede45ce420d3ced38a0bdff3}\label{classcom_1_1mycompany_1_1systemsoftcw_1_1RegistController_a9fd126e5ede45ce420d3ced38a0bdff3}} 
+\index{com.mycompany.systemsoftcw.RegistController@{com.mycompany.systemsoftcw.RegistController}!validateEmail@{validateEmail}}
+\index{validateEmail@{validateEmail}!com.mycompany.systemsoftcw.RegistController@{com.mycompany.systemsoftcw.RegistController}}
+\doxysubsubsection{\texorpdfstring{validateEmail()}{validateEmail()}}
+{\footnotesize\ttfamily boolean com.\+mycompany.\+systemsoftcw.\+Regist\+Controller.\+validate\+Email (\begin{DoxyParamCaption}\item[{String}]{email }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Validate email Function. 
+
+Checks the syntax of the email
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em User\textquotesingle{}s} & email\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if email syntax is correct, false if not. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Regist\+Controller.\+java\end{DoxyCompactItemize}

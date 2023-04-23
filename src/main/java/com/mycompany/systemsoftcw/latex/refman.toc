@@ -1,0 +1,56 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Hierarchical Index}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Class Hierarchy}{1}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Class Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Class List}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Class Documentation}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}com.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}mycompany.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}systemsoftcw.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}App Class Reference}{5}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Detailed Description}{6}{subsection.3.1.1}%
+\contentsline {section}{\numberline {3.2}com.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}mycompany.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}systemsoftcw.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Dbcon Class Reference}{6}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Detailed Description}{6}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.3}com.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}mycompany.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}systemsoftcw.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encryption Class Reference}{6}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Detailed Description}{7}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Member Function Documentation}{7}{subsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.2.1}decript()}{7}{subsubsection.3.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.3.2.2}encrypt()}{7}{subsubsection.3.3.2.2}%
+\contentsline {section}{\numberline {3.4}com.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}mycompany.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}systemsoftcw.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Error\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Warning\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Monitor Class Reference}{8}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Detailed Description}{8}{subsection.3.4.1}%
+\contentsline {section}{\numberline {3.5}com.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}mycompany.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}systemsoftcw.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Login\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller Class Reference}{8}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Detailed Description}{9}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Member Function Documentation}{9}{subsection.3.5.2}%
+\contentsline {subsubsection}{\numberline {3.5.2.1}initialize()}{9}{subsubsection.3.5.2.1}%
+\contentsline {subsubsection}{\numberline {3.5.2.2}validateUser()}{10}{subsubsection.3.5.2.2}%
+\contentsline {section}{\numberline {3.6}com.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}mycompany.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}systemsoftcw.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Maininterface\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller Class Reference}{11}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Detailed Description}{12}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Member Function Documentation}{12}{subsection.3.6.2}%
+\contentsline {subsubsection}{\numberline {3.6.2.1}CopyFile()}{12}{subsubsection.3.6.2.1}%
+\contentsline {subsubsection}{\numberline {3.6.2.2}CreateFolder()}{13}{subsubsection.3.6.2.2}%
+\contentsline {subsubsection}{\numberline {3.6.2.3}initialize()}{13}{subsubsection.3.6.2.3}%
+\contentsline {subsubsection}{\numberline {3.6.2.4}moveFile()}{13}{subsubsection.3.6.2.4}%
+\contentsline {subsubsection}{\numberline {3.6.2.5}setEmail()}{13}{subsubsection.3.6.2.5}%
+\contentsline {section}{\numberline {3.7}com.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}mycompany.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}systemsoftcw.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Primary\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller Class Reference}{14}{section.3.7}%
+\contentsline {section}{\numberline {3.8}com.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}mycompany.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}systemsoftcw.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Profile\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller Class Reference}{14}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}Detailed Description}{15}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {3.8.2}Member Function Documentation}{15}{subsection.3.8.2}%
+\contentsline {subsubsection}{\numberline {3.8.2.1}initialize()}{15}{subsubsection.3.8.2.1}%
+\contentsline {section}{\numberline {3.9}com.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}mycompany.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}systemsoftcw.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Regist\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller Class Reference}{16}{section.3.9}%
+\contentsline {subsection}{\numberline {3.9.1}Detailed Description}{17}{subsection.3.9.1}%
+\contentsline {subsection}{\numberline {3.9.2}Member Function Documentation}{17}{subsection.3.9.2}%
+\contentsline {subsubsection}{\numberline {3.9.2.1}addUser()}{17}{subsubsection.3.9.2.1}%
+\contentsline {subsubsection}{\numberline {3.9.2.2}createTable()}{17}{subsubsection.3.9.2.2}%
+\contentsline {subsubsection}{\numberline {3.9.2.3}generateOrLoadSalt()}{18}{subsubsection.3.9.2.3}%
+\contentsline {subsubsection}{\numberline {3.9.2.4}generateSecurePass()}{18}{subsubsection.3.9.2.4}%
+\contentsline {subsubsection}{\numberline {3.9.2.5}initialize()}{18}{subsubsection.3.9.2.5}%
+\contentsline {subsubsection}{\numberline {3.9.2.6}validateEmail()}{18}{subsubsection.3.9.2.6}%
+\contentsline {section}{\numberline {3.10}com.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}mycompany.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}systemsoftcw.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Secondary\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller Class Reference}{19}{section.3.10}%
+\contentsline {section}{\numberline {3.11}com.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}mycompany.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}systemsoftcw.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Sharefiles\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller Class Reference}{19}{section.3.11}%
+\contentsline {subsection}{\numberline {3.11.1}Detailed Description}{20}{subsection.3.11.1}%
+\contentsline {subsection}{\numberline {3.11.2}Member Function Documentation}{20}{subsection.3.11.2}%
+\contentsline {subsubsection}{\numberline {3.11.2.1}initialize()}{20}{subsubsection.3.11.2.1}%
+\contentsline {subsubsection}{\numberline {3.11.2.2}setEmails()}{20}{subsubsection.3.11.2.2}%
+\contentsline {section}{\numberline {3.12}com.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}mycompany.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}systemsoftcw.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Terminal\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller Class Reference}{21}{section.3.12}%
+\contentsline {subsection}{\numberline {3.12.1}Detailed Description}{22}{subsection.3.12.1}%
+\contentsline {subsection}{\numberline {3.12.2}Member Function Documentation}{22}{subsection.3.12.2}%
+\contentsline {subsubsection}{\numberline {3.12.2.1}initialize()}{22}{subsubsection.3.12.2.1}%
+\contentsline {subsubsection}{\numberline {3.12.2.2}setEmails()}{22}{subsubsection.3.12.2.2}%
+\contentsline {chapter}{Index}{23}{section*.26}%

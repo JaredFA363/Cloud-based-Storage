@@ -1,0 +1,80 @@
+\hypertarget{classcom_1_1mycompany_1_1systemsoftcw_1_1LoginController}{}\doxysection{com.\+mycompany.\+systemsoftcw.\+Login\+Controller Class Reference}
+\label{classcom_1_1mycompany_1_1systemsoftcw_1_1LoginController}\index{com.mycompany.systemsoftcw.LoginController@{com.mycompany.systemsoftcw.LoginController}}
+
+
+Login Controller Class.  
+
+
+
+
+Inheritance diagram for com.\+mycompany.\+systemsoftcw.\+Login\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{classcom_1_1mycompany_1_1systemsoftcw_1_1LoginController__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for com.\+mycompany.\+systemsoftcw.\+Login\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{classcom_1_1mycompany_1_1systemsoftcw_1_1LoginController__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \mbox{\hyperlink{classcom_1_1mycompany_1_1systemsoftcw_1_1LoginController_a9251f503cc45fe43a57af940bf342cc1}{validate\+User}} (String email, String pass)
+\begin{DoxyCompactList}\small\item\em Validate User Function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1mycompany_1_1systemsoftcw_1_1LoginController_aa4f29d456d1d19fc3a3e68afb8a9f992}{initialize}} (U\+RL url, Resource\+Bundle rb)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Login Controller Class. 
+
+F\+X\+ML Controller class
+
+\begin{DoxyAuthor}{Author}
+N0992216
+\end{DoxyAuthor}
+Login Controller connects to Login view. Takes in the email and password of the user. Allows Users to go into the main program if details are correct. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcom_1_1mycompany_1_1systemsoftcw_1_1LoginController_aa4f29d456d1d19fc3a3e68afb8a9f992}\label{classcom_1_1mycompany_1_1systemsoftcw_1_1LoginController_aa4f29d456d1d19fc3a3e68afb8a9f992}} 
+\index{com.mycompany.systemsoftcw.LoginController@{com.mycompany.systemsoftcw.LoginController}!initialize@{initialize}}
+\index{initialize@{initialize}!com.mycompany.systemsoftcw.LoginController@{com.mycompany.systemsoftcw.LoginController}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily void com.\+mycompany.\+systemsoftcw.\+Login\+Controller.\+initialize (\begin{DoxyParamCaption}\item[{U\+RL}]{url,  }\item[{Resource\+Bundle}]{rb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initializes the controller class. \mbox{\Hypertarget{classcom_1_1mycompany_1_1systemsoftcw_1_1LoginController_a9251f503cc45fe43a57af940bf342cc1}\label{classcom_1_1mycompany_1_1systemsoftcw_1_1LoginController_a9251f503cc45fe43a57af940bf342cc1}} 
+\index{com.mycompany.systemsoftcw.LoginController@{com.mycompany.systemsoftcw.LoginController}!validateUser@{validateUser}}
+\index{validateUser@{validateUser}!com.mycompany.systemsoftcw.LoginController@{com.mycompany.systemsoftcw.LoginController}}
+\doxysubsubsection{\texorpdfstring{validateUser()}{validateUser()}}
+{\footnotesize\ttfamily boolean com.\+mycompany.\+systemsoftcw.\+Login\+Controller.\+validate\+User (\begin{DoxyParamCaption}\item[{String}]{email,  }\item[{String}]{pass }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Validate User Function. 
+
+Takes in the username and password combination. Compares it to the database. If matches returns true to the confirm\+Logins procedure.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em The} & email inputted by the user \\
+\hline
+\mbox{\texttt{ in}}  & {\em password} & input by the user after it has been hashed\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Boolean variable flag which shows if the verification is successful or not 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Login\+Controller.\+java\end{DoxyCompactItemize}
