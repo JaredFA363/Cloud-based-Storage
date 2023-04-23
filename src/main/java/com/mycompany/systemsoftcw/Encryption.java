@@ -22,9 +22,19 @@ import java.util.Base64;
 public class Encryption {
     private static final int KEY_SIZE = 256; //number of bits
     private static final int SALT_SIZE = 10; // makes sure passwords of different users do not derive the same key. 
-    private static final String ALGORITHM = "AES/CBC/PKCS5Padding";
-    private static final String DB_URL = "jdbc:sqlite:AccountDB.db";
-  
+    private static final String ALGORITHM = "AES/CBC/PKCS5Padding"; /** The encryption algorithm. */
+    private static final String DB_URL = "jdbc:sqlite:AccountDB.db";/** The database URL */
+  /**
+     * uses the AES technique to encrypt the supplied input file using the user's password as the key and a salt that is created at random.
+     * 
+     * @param inputFilePath the path of the input file
+     * @param outputFilePath the path of the output file
+     * @param username the username of the user whose password is used to derive the encryption key
+     * @throws IOException if there is an I/O error while reading or writing the files
+     * @throws NoSuchAlgorithmException if the specified encryption algorithm is not available
+     * @throws InvalidKeySpecException if the specified key specification isn't valid
+     * @throws SQLException if there is an error accessing the database
+     */
     public static void encrypt(Path inputFilePath, Path outputFilePath, String username) throws Exception{
         String password = getEncryptedPasswordFromDatabase(username);
         byte[] salt = generateSalt();
@@ -43,7 +53,15 @@ public class Encryption {
         
         Files.write(outputFilePath, saltAndEncryptedBytes);
     }
-    
+     /**
+     * Decrypts the input file using AES algorithm with a key derived from the user's password and a generated salt stored in the file.
+     * 
+     * @param inputFilePath the path of the input file
+     * @param outputFilePath the path of the output file
+     * @param username the username of the user whose password is used to derive the encryption key
+     * @throws IOException if there is an I/O error while reading or writing the files
+     * @throws NoSuchAlgorithmException if the specified encryption algorithm is not available
+     */
     public static void decript(Path inputFilePath, Path outputFilePath, String username) throws Exception{
         String password = getEncryptedPasswordFromDatabase(username);
         byte[] saltAndEncryptedBytes = Files.readAllBytes(inputFilePath);//takes as input the path of the encrypted file
@@ -60,33 +78,49 @@ public class Encryption {
         
         Files.write(outputFilePath, decryptedBytes); //and writes the decrypted bytes to the output file.
     }
-
+       /**
+        Generates a random salt of the specified length.
+        @return a byte array containing the salt
+       */
     private static byte[] generateSalt() {
          byte[] salt = new byte[SALT_SIZE];
          SecureRandom random = new SecureRandom(); //SecureRandom object to generate a random salt of the specified length.
          random.nextBytes(salt);
          return salt;
     }
-    
-    private static String getEncryptedPasswordFromDatabase(String username) throws SQLException{
+    /**
+Retrieves the encrypted password for a given username from the database.
+*/
+    private static String getEncryptedPasswordFromDatabase(String username) throws SQLException{//@param username the username to retrieve the password
      try (Connection conn = DriverManager.getConnection(DB_URL)) {
             PreparedStatement stmt = conn.prepareStatement("SELECT password FROM users WHERE username = ?");
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return rs.getString("password");
+                return rs.getString("password");//return the encrypted password as a String
             } else {
-                throw new IllegalArgumentException("Username cannot found: " + username);
+                throw new IllegalArgumentException("Username cannot found: " + username);//throws SQLException if there is an error retrieving the password from the database
             } 
      }
     }
-     
+     /**
+     Derives secret key using PBKDF2WithHmacSHA256 algorithm.
+     @param password uses the password to derive the key from
+     @param salt uses the salt to use for key derivation
+     @return returns the secret key as a SecretKey object
+     @throws an Exception if there is an error deriving the key
+     */
     private static SecretKey deriveKey(String password, byte[] salt) throws Exception { //exception if error
         KeySpec spec = new PBEKeySpec(password.toCharArray(), salt,65536, KEY_SIZE);// derives the secret key using PBKDF2WithHmacSHA256 algorithm 
         SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
         return new SecretKeySpec(factory.generateSecret(spec).getEncoded(), "AES");
     }
-    
+    /**
+    Decrypts a given encrypted password using AES encryption.
+    @param encryptedPassword the encrypted password as a String
+    @return the decrypted password as a String
+    @throws Exception if there is an error decrypting the password
+    */
      private static String decryptPassword(String encryptedPassword) throws Exception {
     Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
     cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(Arrays.copyOf(encryptedPassword.getBytes("UTF-8"), 16), "AES"));
