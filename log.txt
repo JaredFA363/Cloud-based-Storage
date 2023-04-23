@@ -1,0 +1,324 @@
+commit 9de3e55e4bafe27d982ef6756242cddd341821ee
+Author: N0992216 <ntu-user@0b3e5f63350a>
+Date:   Sun Apr 23 19:19:45 2023 +0000
+
+    Added doxygen files and pdf
+
+commit 0a695cf274cb4fbb0645f210217a9158b00deab1
+Author: N1004932 <terrence.oppon2021@my.ntu.ac.uk>
+Date:   Sun Apr 23 17:01:40 2023 +0100
+
+    Added doxygen
+
+commit e5640c0a8db300dc9887759b125fa032d0c022c0
+Author: N1004932 <terrence.oppon2021@my.ntu.ac.uk>
+Date:   Sun Apr 23 16:53:40 2023 +0100
+
+    Added Doxygen
+
+commit 7130933c7e4a5290bade8c6cb14c275d538476c3
+Author: N0992216 <ntu-user@3f0cd098c18a>
+Date:   Sun Apr 23 11:39:15 2023 +0000
+
+    Added doxygen comments
+
+commit 1c36b531ce576ad2015f977e478ea141377b9ce3
+Author: N0992216 <ntu-user@3f0cd098c18a>
+Date:   Sun Apr 23 08:43:10 2023 +0000
+
+    Change the terminal to split input and output
+
+commit cd624102d9cceaa6b8957eba2f6f108f0977d838
+Author: N0992216 <>
+Date:   Sun Apr 23 07:41:22 2023 +0000
+
+    Added some success and error messaging for users and implemented download file
+
+commit 9390405394794bb25dedec6feee8d4ccf126d347
+Author: n1004932 <N1004932@my.ntu.ac.uk>
+Date:   Sat Apr 22 20:01:27 2023 +0000
+
+    started Error and warning monitor
+
+commit 19a7dc69eccecfbc5fac4aca8a750087ba047f75
+Author: ntu-user <N1004932@my.ntu.ac.uk>
+Date:   Sat Apr 22 20:00:11 2023 +0000
+
+    started Error and warning monitor
+
+commit b74c55d3ec39b7e43ab8ec73453cb97e80f4ce26
+Author: N1004932 <terrence.oppon2021@my.ntu.ac.uk>
+Date:   Sat Apr 22 20:24:10 2023 +0100
+
+    added admin code
+
+commit ea3bf921b2bbc7e9daff81ada15eee023c99da7c
+Author: N0992216 <ntu-user@89d68c2d69a4>
+Date:   Sat Apr 22 12:47:10 2023 +0000
+
+    CReated view for users to see their files in gui
+
+commit 0469c7f946e4a200044fa035cd7d30d4195cfcc6
+Author: N0992216 <ntu-user@89d68c2d69a4>
+Date:   Sat Apr 22 09:42:29 2023 +0000
+
+    Created ReadWrie access share
+
+commit cd254cef9f53b7b83b6473b11ee715adc4da9af0
+Author: N0992216 <>
+Date:   Sat Apr 22 09:29:51 2023 +0000
+
+    Added Nano functionality
+
+commit a4aaa8fe4c12a8f6636308d4f58bdf5907e5dc5f
+Author: N0992216 <>
+Date:   Fri Apr 21 14:50:31 2023 +0000
+
+    CReated share for readonly files
+
+commit 9e1e973a6b6e485a19c72f7d3261a980590a258b
+Author: N0992216 <>
+Date:   Fri Apr 21 10:46:02 2023 +0000
+
+    Added the INstance checker. User cannot log into two instance of the application
+
+commit 858cb4b017e394b39a0c79b955e8379e2475dc8d
+Author: N1004932 <terrence.oppon2021@my.ntu.ac.uk>
+Date:   Thu Apr 20 12:32:10 2023 +0100
+
+    Update Encryption.java
+
+commit a6c14005341abf38669a7faf14f1f056a1551ee2
+Author: N1004932 <terrence.oppon2021@my.ntu.ac.uk>
+Date:   Thu Apr 20 12:13:05 2023 +0100
+
+    Update Encryption.java
+
+commit 2ef681b26d16df1e241a8dc05ac727cbbccd3f1e
+Author: N0992216 <>
+Date:   Wed Apr 19 20:41:50 2023 +0000
+
+    Integrated second docker container with application switched method to go to different windows
+
+commit af36348bb7ad846a354fb95bfee7235ba325b4b4
+Author: N0992216 <>
+Date:   Wed Apr 19 10:50:27 2023 +0000
+
+    Got the second docker container to store files
+
+commit e0a185586aea0dc8b503a05c6f11cebc84ff94aa
+Author: n1004932 <N1004932@my.ntu.ac.uk>
+Date:   Wed Apr 19 02:34:02 2023 +0000
+
+    Added decryption method
+
+commit 371d463d142a6bcf4ebadb48c80aadd33168b070
+Author: n1004932 <N1004932@my.ntu.ac.uk>
+Date:   Wed Apr 19 02:32:39 2023 +0000
+
+    Added decryption method
+
+commit f8cb9503e0e45d76eb6ae937b77804cf2e2ac5b8
+Merge: d5f8d18 5f60450
+Author: ntu-user <N1004932@my.ntu.ac.uk>
+Date:   Wed Apr 19 02:30:02 2023 +0000
+
+    Merge origin/master
+
+commit d5f8d182aafc21cf3c3e2c6bee9297d8445f38ab
+Author: n1004932 <N1004932@my.ntu.ac.uk>
+Date:   Tue Apr 18 16:23:29 2023 +0000
+
+    Updated Encryption but not complete
+
+commit bf543169d587fe40668c10f4c15f7e1afc483243
+Author: N1004932 <N1004932@my.ntu.ac.uk>
+Date:   Tue Apr 18 16:21:09 2023 +0000
+
+    Updated Encryption but not complete
+
+commit 5f60450107428384f4d9996f72e1ff272fc77ac9
+Author: N0992216 <ntu-user@b6a4ae27891c>
+Date:   Tue Apr 18 03:26:34 2023 +0000
+
+    TRying to implement the whoami command
+
+commit 9c275717b2d4a58f238fe315bcc5ea720e84f7d8
+Author: N0992216 <ntu-user@b6a4ae27891c>
+Date:   Tue Apr 18 02:35:54 2023 +0000
+
+    CReated mv,cp,ps commands for terminal emulator
+
+commit 87c80dca3489ae4a460966cc30c7ab5ebf8f8465
+Author: N0992216 <ntu-user@b6a4ae27891c>
+Date:   Mon Apr 17 18:51:16 2023 +0000
+
+    Added terminal mkdir feature
+
+commit c94861e844a1143b7c9edb04d2b0d52a328bc7d6
+Author: N0992216 <>
+Date:   Mon Apr 17 16:51:27 2023 +0000
+
+    CHanged copy to fit program
+
+commit 2a8a31cd21278f340ebd67080c95c821a2b7f556
+Author: ntu-user <N1004932@my.ntu.ac.uk>
+Date:   Mon Apr 17 03:33:01 2023 +0000
+
+    Created the file encryption
+
+commit d8a79291754457755e438b08407071a31acf1577
+Author: ntu-user <N1004932@my.ntu.ac.uk>
+Date:   Mon Apr 17 02:09:50 2023 +0000
+
+    added copy file
+
+commit eaad0fbd96237ccd052e45ee3218a7fa5cbdf074
+Author: N0992216 <>
+Date:   Sun Apr 16 15:44:00 2023 +0000
+
+    Added Terminal GUI.
+
+commit 12c4032810ad39f5787ac08844a8ea34a3d1575a
+Author: ntu-user <N1004932@my.ntu.ac.uk>
+Date:   Sat Apr 15 17:35:52 2023 +0000
+
+    added upload file
+
+commit bb9dad322d492a62b5774b9c03bb11121aa28835
+Author: ntu-user <N1004932@my.ntu.ac.uk>
+Date:   Sat Apr 15 17:34:12 2023 +0000
+
+    added upload filee
+
+commit 885203af298c7671612ecf599fe1bbe1561775d2
+Author: N0992216 <>
+Date:   Sat Apr 15 14:57:45 2023 +0000
+
+    added move file and rename file functionality
+
+commit 5de4a862b378e48191f515f04cd981d4a5421149
+Author: N0992216 <>
+Date:   Fri Apr 14 18:32:51 2023 +0000
+
+    Added the create file and folder, delete file and folder functionality all working
+
+commit e48f3049f50ed0ab7518623479cdb1f2d45385f7
+Author: N1004932 <terrence.oppon2021@my.ntu.ac.uk>
+Date:   Fri Feb 24 18:00:01 2023 +0000
+
+    Add files via upload
+
+commit 43820607479c19053088ca5281058a8fdc06f333
+Author: N0992216 <>
+Date:   Fri Feb 17 20:28:26 2023 +0000
+
+    Updating profile now hashes password when changed
+
+commit ad91bb6ba3a197f495c9b9bba78e12eafcae23fa
+Author: N0992216 <>
+Date:   Sun Feb 12 15:52:13 2023 +0000
+
+    changed login & register forms implemented verify
+
+commit 80a7e7fef51fd1d14ab4718f4c972a3b1116f0fd
+Author: N0992216 <>
+Date:   Thu Feb 9 08:05:58 2023 +0000
+
+    Added Doxygen comments
+
+commit 6f1b6f22ffa73bec21cc14a8ff2b917e7ea72af6
+Author: ntu-user <ntu-user@ea244957f1a6>
+Date:   Thu Feb 9 08:04:37 2023 +0000
+
+    Added Doxygen comments
+
+commit 271bbda0c5e1c94b67b3e8dc1d799055f96b0d06
+Author: N0992216 <>
+Date:   Tue Feb 7 01:14:14 2023 +0000
+
+    added working delete an update additional features needed
+
+commit 20a49dfd8038bca42221a025507180da114786c0
+Author: N1004932 <terrence.oppon2021@my.ntu.ac.uk>
+Date:   Mon Feb 6 13:36:35 2023 +0000
+
+    Add files via upload
+
+commit 54bb1a08088de801a947c77d9e7205dd4988151d
+Author: N0992216 <>
+Date:   Sun Feb 5 15:48:41 2023 +0000
+
+    added profile section
+
+commit 69043e2a59d8dec2e131ddbbbf1770d9822854fb
+Author: N0992216 <>
+Date:   Tue Jan 31 16:25:56 2023 +0000
+
+    Login working with encrypted passwords
+
+commit ee1221b85e8e9242296f23d6b8f468ebb70be266
+Author: N0992216 <>
+Date:   Tue Jan 31 03:06:55 2023 +0000
+
+    Altered register controller so now plain text passwords stored as hashes
+
+commit 304aa6c22722432b65b711bd7252040ad30d7dc2
+Author: N0992216 <>
+Date:   Sun Jan 29 16:59:29 2023 +0000
+
+    Login controller nearly complete unable to catch exception for no user
+
+commit ab81c64cf19cc532a2524a9a0a62fff2192533db
+Author: N0992216 <ntu-user@02183c80aade>
+Date:   Sat Jan 28 20:59:13 2023 +0000
+
+    Can add users to db successfully
+
+commit 3be30c66ddb820c913765ae3d7e2a71f6d21d463
+Author: N0992216 <ntu-user@02183c80aade>
+Date:   Sat Jan 28 18:42:54 2023 +0000
+
+    Created DB successfully
+
+commit 1e3bfb0e0cde6322e7280ba8af51801a3700b8e0
+Author: N0992216 <>
+Date:   Sat Jan 28 14:22:41 2023 +0000
+
+    Added logout button and connection to database successful
+
+commit 1eceef1868f3a2af88b5ec536e405807e6896ee0
+Author: N0992216 <>
+Date:   Tue Jan 24 16:26:51 2023 +0000
+
+    added database but no connection
+
+commit e93b61c9025db8dd2d3e580c657c0ae9351de73e
+Author: N0992216 <>
+Date:   Sun Jan 22 11:15:56 2023 +0000
+
+    Fixed the register button & confirm buttons working
+
+commit dbe73c05af61d74e8dcf07d54e397686a82018a1
+Author: N0992216 <>
+Date:   Sat Jan 21 19:50:46 2023 +0000
+
+    Register button not working added register controller
+
+commit ed9fc72aa2a914928238792ff0eca9d1bdbd4115
+Author: N0992216 <>
+Date:   Sat Jan 21 16:42:13 2023 +0000
+
+    Buttons working to send to register and sign in pages
+
+commit 7661dee2067be392deb44777353e336b2d085351
+Author: N0992216 <>
+Date:   Fri Jan 20 23:52:35 2023 +0000
+
+    Added sign in and register interfaces
+
+commit 02ca036af8a963ea9dd8b20408b7f9d2c7d0a391
+Author: N0991126 <N0991126@my.ntu.ac.uk>
+Date:   Thu Jan 19 17:02:47 2023 +0000
+
+    first commit
